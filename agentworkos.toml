@@ -1,0 +1,287 @@
+[stack]
+name = "harzva-agentworkos-stack"
+version = "0.1.0"
+platforms = ["windows-x64", "darwin-arm64", "linux-x64"]
+codex_home = "~/.codex"
+claude_home = "~/.claude"
+default_profile = "safe-core"
+
+[[profiles]]
+name = "base"
+description = "Terms, rules, and core AgentWorkOS inventory capability."
+packages = [
+  "io.github.harzva.agentworkos.inventory",
+  "io.github.harzva.agentworkos.terms",
+  "io.github.harzva.agentworkos.rules"
+]
+repos = [
+  "io.github.harzva.agentworkos",
+  "io.github.harzva.agentworkos-stack"
+]
+
+[[profiles]]
+name = "agents"
+description = "Portable local task role cards for Codex and Claude Code."
+extends = ["base"]
+packages = [
+  "local.agent.project-inventory",
+  "local.agent.role-planner",
+  "local.agent.quality-reviewer",
+  "local.agent.release-manager"
+]
+
+[[profiles]]
+name = "skills"
+description = "Public-safe reusable skills used by the Harzva AgentOS workflow."
+extends = ["agents"]
+packages = [
+  "io.github.just-agent.readme-design",
+  "io.github.just-agent.app-preview-lab",
+  "io.github.just-agent.appui-design",
+  "io.github.harzva.design-md-flow",
+  "io.github.harzva.readme-showcase-screenshot",
+  "io.github.harzva.android-release-emulator-qa",
+  "io.github.harzva.make-windows-silky"
+]
+
+[[profiles]]
+name = "safe-core"
+description = "Default public-safe Harzva AgentOS stack."
+extends = ["skills"]
+
+[[profiles]]
+name = "full"
+description = "All packages and managed repo references declared by this public stack."
+packages = ["*"]
+repos = ["*"]
+
+[[packages]]
+id = "io.github.harzva.agentworkos.inventory"
+type = "skill"
+source = "git+https://github.com/Harzva/AgentWorkOS.git"
+path = "skills/agentworkos-inventory"
+install_to = "skills/agentworkos-inventory"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/agentworkos-inventory"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/agentworkos-inventory"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.agentworkos.terms"
+type = "terms"
+source = "./TERMS.md"
+install_to = "agents/TERMS.md"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "agents/TERMS.md"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "TERMS.md"
+adapter = "terms-to-claude-memory"
+
+[[packages]]
+id = "io.github.harzva.agentworkos.rules"
+type = "rule"
+source = "./AGENTS.md"
+install_to = "AGENTS.md"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "AGENTS.md"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "CLAUDE.md"
+adapter = "rule-to-claude-memory"
+
+[[packages]]
+id = "local.agent.project-inventory"
+type = "agent"
+source = "./agents/roles/project-inventory.md"
+install_to = "agents/roles/project-inventory.md"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "agents/roles/project-inventory.md"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "agents/project-inventory.md"
+adapter = "agent-to-claude-subagent"
+
+[[packages]]
+id = "local.agent.role-planner"
+type = "agent"
+source = "./agents/roles/role-planner.md"
+install_to = "agents/roles/role-planner.md"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "agents/roles/role-planner.md"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "agents/role-planner.md"
+adapter = "agent-to-claude-subagent"
+
+[[packages]]
+id = "local.agent.quality-reviewer"
+type = "agent"
+source = "./agents/roles/quality-reviewer.md"
+install_to = "agents/roles/quality-reviewer.md"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "agents/roles/quality-reviewer.md"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "agents/quality-reviewer.md"
+adapter = "agent-to-claude-subagent"
+
+[[packages]]
+id = "local.agent.release-manager"
+type = "agent"
+source = "./agents/roles/release-manager.md"
+install_to = "agents/roles/release-manager.md"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "agents/roles/release-manager.md"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "agents/release-manager.md"
+adapter = "agent-to-claude-subagent"
+
+[[packages]]
+id = "io.github.just-agent.readme-design"
+type = "skill"
+source = "git+https://github.com/Just-Agent/README-Design-Skill.git"
+install_to = "skills/readme-design"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/readme-design"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/readme-design"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.just-agent.app-preview-lab"
+type = "skill"
+source = "git+https://github.com/Just-Agent/AppPreviewLab-Skill.git"
+install_to = "skills/app-preview-lab"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/app-preview-lab"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/app-preview-lab"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.just-agent.appui-design"
+type = "skill"
+source = "git+https://github.com/Just-Agent/Appui-Design-Skill.git"
+install_to = "skills/appui-design"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/appui-design"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/appui-design"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.design-md-flow"
+type = "skill"
+source = "git+https://github.com/Harzva/design-md-flow.git"
+install_to = "skills/design-md-flow"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/design-md-flow"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/design-md-flow"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.readme-showcase-screenshot"
+type = "skill"
+source = "git+https://github.com/Harzva/ReadmeShowcaseScreenshot-Skill.git"
+install_to = "skills/readme-showcase-screenshot"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/readme-showcase-screenshot"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/readme-showcase-screenshot"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.android-release-emulator-qa"
+type = "skill"
+source = "git+https://github.com/Harzva/android-release-emulator-qa-skill.git"
+install_to = "skills/android-release-emulator-qa-skill"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/android-release-emulator-qa-skill"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/android-release-emulator-qa-skill"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.make-windows-silky"
+type = "skill"
+source = "git+https://github.com/Harzva/make_windows_silky_Patch.git"
+install_to = "skills/make-windows-silky"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/make-windows-silky"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/make-windows-silky"
+adapter = "skill-to-claude-skill"
+
+[[repos]]
+id = "io.github.harzva.agentworkos"
+source = "https://github.com/Harzva/AgentWorkOS.git"
+checkout_to = "repos/AgentWorkOS"
+ref = "main"
+
+[[repos]]
+id = "io.github.harzva.agentworkos-stack"
+source = "https://github.com/Harzva/harzva-agentworkos-stack.git"
+checkout_to = "repos/harzva-agentworkos-stack"
+ref = "main"

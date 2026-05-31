@@ -1,0 +1,395 @@
+{
+  "schema": "agentworkos.lock.v1",
+  "manifest": "agentworkos.toml",
+  "stack": {
+    "name": "harzva-agentworkos-stack",
+    "version": "0.1.0",
+    "platforms": [
+      "windows-x64",
+      "darwin-arm64",
+      "linux-x64"
+    ],
+    "codex_home": "~/.codex",
+    "claude_home": "~/.claude",
+    "default_profile": "safe-core"
+  },
+  "profiles": [
+    {
+      "name": "base",
+      "description": "Terms, rules, and core AgentWorkOS inventory capability.",
+      "packages": [
+        "io.github.harzva.agentworkos.inventory",
+        "io.github.harzva.agentworkos.terms",
+        "io.github.harzva.agentworkos.rules"
+      ],
+      "repos": [
+        "io.github.harzva.agentworkos",
+        "io.github.harzva.agentworkos-stack"
+      ]
+    },
+    {
+      "name": "agents",
+      "description": "Portable local task role cards for Codex and Claude Code.",
+      "extends": [
+        "base"
+      ],
+      "packages": [
+        "local.agent.project-inventory",
+        "local.agent.role-planner",
+        "local.agent.quality-reviewer",
+        "local.agent.release-manager"
+      ]
+    },
+    {
+      "name": "skills",
+      "description": "Public-safe reusable skills used by the Harzva AgentOS workflow.",
+      "extends": [
+        "agents"
+      ],
+      "packages": [
+        "io.github.just-agent.readme-design",
+        "io.github.just-agent.app-preview-lab",
+        "io.github.just-agent.appui-design",
+        "io.github.harzva.design-md-flow",
+        "io.github.harzva.readme-showcase-screenshot",
+        "io.github.harzva.android-release-emulator-qa",
+        "io.github.harzva.make-windows-silky"
+      ]
+    },
+    {
+      "name": "safe-core",
+      "description": "Default public-safe Harzva AgentOS stack.",
+      "extends": [
+        "skills"
+      ]
+    },
+    {
+      "name": "full",
+      "description": "All packages and managed repo references declared by this public stack.",
+      "packages": [
+        "*"
+      ],
+      "repos": [
+        "*"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "id": "io.github.harzva.agentworkos.inventory",
+      "type": "skill",
+      "source": "git+https://github.com/Harzva/AgentWorkOS.git",
+      "path": "skills/agentworkos-inventory",
+      "install_to": "skills/agentworkos-inventory",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "skills/agentworkos-inventory"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "skills/agentworkos-inventory",
+          "adapter": "skill-to-claude-skill"
+        }
+      ],
+      "ref": "main",
+      "source_kind": "git-remote",
+      "commit": "9c8bed9f83196c4c1c285be5d206c88d51719803"
+    },
+    {
+      "id": "io.github.harzva.agentworkos.terms",
+      "type": "terms",
+      "source": "./TERMS.md",
+      "path": "",
+      "install_to": "agents/TERMS.md",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "agents/TERMS.md"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "TERMS.md",
+          "adapter": "terms-to-claude-memory"
+        }
+      ],
+      "ref": "main",
+      "resolved_path": "./TERMS.md",
+      "content_hash": "7521ed5aa72f7e4cae3b0b19434825dcc3d9ebf42e5db72bf19f2f1b25133324",
+      "source_kind": "file"
+    },
+    {
+      "id": "io.github.harzva.agentworkos.rules",
+      "type": "rule",
+      "source": "./AGENTS.md",
+      "path": "",
+      "install_to": "AGENTS.md",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "AGENTS.md"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "CLAUDE.md",
+          "adapter": "rule-to-claude-memory"
+        }
+      ],
+      "ref": "main",
+      "resolved_path": "./AGENTS.md",
+      "content_hash": "951622e583d385b56c4f244f99ef08b57b9ef89b923db6f43bce40ab638620cf",
+      "source_kind": "file"
+    },
+    {
+      "id": "local.agent.project-inventory",
+      "type": "agent",
+      "source": "./agents/roles/project-inventory.md",
+      "path": "",
+      "install_to": "agents/roles/project-inventory.md",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "agents/roles/project-inventory.md"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "agents/project-inventory.md",
+          "adapter": "agent-to-claude-subagent"
+        }
+      ],
+      "ref": "main",
+      "resolved_path": "./agents/roles/project-inventory.md",
+      "content_hash": "334f2d57070ccda5d43ba40de609f04d4717c1b199cb0be7cc4119979acc4a18",
+      "source_kind": "file"
+    },
+    {
+      "id": "local.agent.role-planner",
+      "type": "agent",
+      "source": "./agents/roles/role-planner.md",
+      "path": "",
+      "install_to": "agents/roles/role-planner.md",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "agents/roles/role-planner.md"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "agents/role-planner.md",
+          "adapter": "agent-to-claude-subagent"
+        }
+      ],
+      "ref": "main",
+      "resolved_path": "./agents/roles/role-planner.md",
+      "content_hash": "10fb3b056c6621fed7bf967884f75347a65a2371bbc84ef7a5d468b5f5bf799e",
+      "source_kind": "file"
+    },
+    {
+      "id": "local.agent.quality-reviewer",
+      "type": "agent",
+      "source": "./agents/roles/quality-reviewer.md",
+      "path": "",
+      "install_to": "agents/roles/quality-reviewer.md",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "agents/roles/quality-reviewer.md"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "agents/quality-reviewer.md",
+          "adapter": "agent-to-claude-subagent"
+        }
+      ],
+      "ref": "main",
+      "resolved_path": "./agents/roles/quality-reviewer.md",
+      "content_hash": "9541503510d4632f0bc67dda0943d70c004eb1f2142f4efc8202505dda2b3716",
+      "source_kind": "file"
+    },
+    {
+      "id": "local.agent.release-manager",
+      "type": "agent",
+      "source": "./agents/roles/release-manager.md",
+      "path": "",
+      "install_to": "agents/roles/release-manager.md",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "agents/roles/release-manager.md"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "agents/release-manager.md",
+          "adapter": "agent-to-claude-subagent"
+        }
+      ],
+      "ref": "main",
+      "resolved_path": "./agents/roles/release-manager.md",
+      "content_hash": "30a459e1fd81bde9058e1f1d2a64a9b76d1ebc2fecabe55fcdd7c4a2e537b477",
+      "source_kind": "file"
+    },
+    {
+      "id": "io.github.just-agent.readme-design",
+      "type": "skill",
+      "source": "git+https://github.com/Just-Agent/README-Design-Skill.git",
+      "path": "",
+      "install_to": "skills/readme-design",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "skills/readme-design"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "skills/readme-design",
+          "adapter": "skill-to-claude-skill"
+        }
+      ],
+      "ref": "main",
+      "source_kind": "git-remote",
+      "commit": "e505703fd9631a29e7626fcbbbe75130c9a2e66d"
+    },
+    {
+      "id": "io.github.just-agent.app-preview-lab",
+      "type": "skill",
+      "source": "git+https://github.com/Just-Agent/AppPreviewLab-Skill.git",
+      "path": "",
+      "install_to": "skills/app-preview-lab",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "skills/app-preview-lab"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "skills/app-preview-lab",
+          "adapter": "skill-to-claude-skill"
+        }
+      ],
+      "ref": "main",
+      "source_kind": "git-remote",
+      "commit": "18a899107680c4d81bc5ae275e710f831b0cf3be"
+    },
+    {
+      "id": "io.github.just-agent.appui-design",
+      "type": "skill",
+      "source": "git+https://github.com/Just-Agent/Appui-Design-Skill.git",
+      "path": "",
+      "install_to": "skills/appui-design",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "skills/appui-design"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "skills/appui-design",
+          "adapter": "skill-to-claude-skill"
+        }
+      ],
+      "ref": "main",
+      "source_kind": "git-remote",
+      "commit": "c70f41f655ca87099c560cdaa329f91a425b00c2"
+    },
+    {
+      "id": "io.github.harzva.design-md-flow",
+      "type": "skill",
+      "source": "git+https://github.com/Harzva/design-md-flow.git",
+      "path": "",
+      "install_to": "skills/design-md-flow",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "skills/design-md-flow"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "skills/design-md-flow",
+          "adapter": "skill-to-claude-skill"
+        }
+      ],
+      "ref": "main",
+      "source_kind": "git-remote",
+      "commit": "1c062d4e200bb7025ad90d79b7d3d186ee130003"
+    },
+    {
+      "id": "io.github.harzva.readme-showcase-screenshot",
+      "type": "skill",
+      "source": "git+https://github.com/Harzva/ReadmeShowcaseScreenshot-Skill.git",
+      "path": "",
+      "install_to": "skills/readme-showcase-screenshot",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "skills/readme-showcase-screenshot"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "skills/readme-showcase-screenshot",
+          "adapter": "skill-to-claude-skill"
+        }
+      ],
+      "ref": "main",
+      "source_kind": "git-remote",
+      "commit": "fda5eb40f868333f960a880de120abf9c9fa7b67"
+    },
+    {
+      "id": "io.github.harzva.android-release-emulator-qa",
+      "type": "skill",
+      "source": "git+https://github.com/Harzva/android-release-emulator-qa-skill.git",
+      "path": "",
+      "install_to": "skills/android-release-emulator-qa-skill",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "skills/android-release-emulator-qa-skill"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "skills/android-release-emulator-qa-skill",
+          "adapter": "skill-to-claude-skill"
+        }
+      ],
+      "ref": "main",
+      "source_kind": "git-remote",
+      "commit": "02bd3c421910e2d857395a2e6c2f4b5dbacc6f84"
+    },
+    {
+      "id": "io.github.harzva.make-windows-silky",
+      "type": "skill",
+      "source": "git+https://github.com/Harzva/make_windows_silky_Patch.git",
+      "path": "",
+      "install_to": "skills/make-windows-silky",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "skills/make-windows-silky"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "skills/make-windows-silky",
+          "adapter": "skill-to-claude-skill"
+        }
+      ],
+      "ref": "main",
+      "source_kind": "git-remote",
+      "commit": "bb8e53ededf45cbecef861be4b3b6e9d2bf36f47"
+    }
+  ],
+  "repos": [
+    {
+      "id": "io.github.harzva.agentworkos",
+      "source": "https://github.com/Harzva/AgentWorkOS.git",
+      "checkout_to": "repos/AgentWorkOS",
+      "ref": "main",
+      "commit": "9c8bed9f83196c4c1c285be5d206c88d51719803"
+    },
+    {
+      "id": "io.github.harzva.agentworkos-stack",
+      "source": "https://github.com/Harzva/harzva-agentworkos-stack.git",
+      "checkout_to": "repos/harzva-agentworkos-stack",
+      "ref": "main",
+      "warning": "remote: Repository not found.\nfatal: repository 'https://github.com/Harzva/harzva-agentworkos-stack.git/' not found"
+    }
+  ]
+}
