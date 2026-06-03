@@ -73,6 +73,14 @@
   - Evidence: 2026-06-04 README documents `bash ./install.sh --profile linux-dev --target all` and `--apply` flow。
 - [x] 保留默认安全行为：不带 `--apply` 只 dry-run。
   - Evidence: 2026-06-04 `install.sh` defaults to dry-run and exits after preview unless `--apply` is present。
+### P0.7 - GitHub npm wrapper
+
+- [x] 增加 `package.json` 和 `bin/harzva-agentos.mjs`，支持 npm 从 GitHub 直接运行。
+  - Evidence: 2026-06-04 `npx github:Harzva/harzva-agentworkos-stack --profile linux-dev --target all` documented as dry-run path。
+- [x] npm wrapper 保持兼容：底层仍调用 `install.sh` 或 `install.ps1`。
+  - Evidence: 2026-06-04 wrapper does not change `agentworkos.toml` package IDs, profiles, or runtime `install_to` targets。
+- [x] 不发布到 npm 官方 registry。
+  - Evidence: 2026-06-04 `package.json` is GitHub-installable and marked `private`。
 ### P1 - 平台能力扩展
 
 - [ ] 为 `windows-desktop` 增加 public-safe Windows 专属技能或 repo 引用。

@@ -27,6 +27,38 @@ It is not the AgentWorkOS package manager itself. The split is intentional:
 
 The goal is simple: make a new machine able to reconstruct the same public-safe AgentOS foundation from GitHub, without copying secrets or raw local history.
 
+## GitHub npm mode
+
+You can also run the stack through npm without publishing this package to the npm registry. npm can install directly from GitHub.
+
+Dry-run from GitHub:
+
+```bash
+npx github:Harzva/harzva-agentworkos-stack --profile linux-dev --target all
+```
+
+Apply from GitHub:
+
+```bash
+npx github:Harzva/harzva-agentworkos-stack --profile linux-dev --target all --apply
+```
+
+Global install from GitHub:
+
+```bash
+npm install -g github:Harzva/harzva-agentworkos-stack
+harzva-agentos --profile linux-dev --target all
+harzva-agentos --profile linux-dev --target all --apply
+```
+
+Windows PowerShell also works through the same binary when Node.js and PowerShell 7 are available:
+
+```powershell
+npx github:Harzva/harzva-agentworkos-stack --profile windows-desktop --target all
+npx github:Harzva/harzva-agentworkos-stack --profile windows-desktop --target all --apply
+```
+
+This npm mode is only a wrapper around `install.sh` / `install.ps1`. It does not publish to npmjs.com and does not change AgentWorkOS manifest behavior.
 ## One-command Linux upgrade
 
 Use this when a Linux machine already cloned the stack repo and you want to refresh AgentWorkOS plus the local Codex/Claude runtime projection.
@@ -245,6 +277,8 @@ harzva-agentworkos-stack/
 ├─ agentworkos.lock.json  # resolved package and repo lockfile
 ├─ install.ps1            # local Windows restore wrapper
 ├─ install.sh             # Linux/macOS dry-run/apply wrapper
+├─ package.json           # GitHub npm wrapper metadata
+└─ bin/harzva-agentos.mjs # npm executable wrapper
 ├─ TERMS.md               # portable term map
 ├─ AGENTS.md              # public-safe operating rules
 ├─ agents/roles/          # portable role cards
