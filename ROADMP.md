@@ -84,9 +84,9 @@
 ### P2 - 新机器恢复演练
 
 - [ ] 在一台非 Windows 机器上执行 `aw install github:Harzva/harzva-agentworkos-stack --profile mac-dev --target all` dry-run。
-- [ ] 在 Linux 开发机执行 `--profile linux-dev` dry-run。
+- [x] 在 Linux 开发机执行 `--profile linux-dev` dry-run。`r`n  - Evidence: 2026-06-04 `docs/evidence/linux-sync-2026-06-04.md` records successful Linux dry-run/apply/scan/doctor summary。
 - [ ] 在 Linux server 执行 `--profile linux-server` dry-run。
-- [ ] 记录每个平台的缺失依赖、路径差异和 runtime projection 差异。
+- [ ] 记录每个平台的缺失依赖、路径差异和 runtime projection 差异。`r`n- [x] 记录 Linux `linux-dev` 成功同步证据。`r`n  - Evidence: 2026-06-04 `docs/evidence/linux-sync-2026-06-04.md`。
 
 ### P3 - 三端同步治理
 
