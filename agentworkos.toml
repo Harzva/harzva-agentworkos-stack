@@ -50,6 +50,25 @@ description = "Default public-safe Harzva AgentOS stack."
 extends = ["skills"]
 
 [[profiles]]
+name = "windows-desktop"
+description = "Windows desktop restore profile. Extends safe-core and keeps Windows-specific additions in ignored local overrides."
+extends = ["safe-core"]
+
+[[profiles]]
+name = "mac-dev"
+description = "macOS development restore profile. Extends safe-core; add macOS-only packages here when they become public-safe."
+extends = ["safe-core"]
+
+[[profiles]]
+name = "linux-dev"
+description = "Linux development restore profile. Extends safe-core; add Linux workstation packages here when they become public-safe."
+extends = ["safe-core"]
+
+[[profiles]]
+name = "linux-server"
+description = "Linux server restore profile. Extends safe-core and should stay CLI/server oriented."
+extends = ["safe-core"]
+[[profiles]]
 name = "full"
 description = "All packages and managed repo references declared by this public stack."
 packages = ["*"]
@@ -285,3 +304,4 @@ id = "io.github.harzva.agentworkos-stack"
 source = "https://github.com/Harzva/harzva-agentworkos-stack.git"
 checkout_to = "repos/harzva-agentworkos-stack"
 ref = "main"
+

@@ -1,18 +1,41 @@
+<div align="center">
+
 # Harzva AgentWorkOS Stack
 
-Public safe-core AgentOS environment declaration for Harzva-managed machines.
+**A public, safe-core AgentOS environment manifest for restoring Harzva's Codex and Claude Code workspace.**
 
-This repository is a stack manifest, not the AgentWorkOS tool itself. The tool lives at `Harzva/AgentWorkOS`; this stack tells AgentWorkOS which safe public skills, agent roles, rules, terms, and repo references to project into Codex and Claude Code runtimes.
+[![Stack](https://img.shields.io/badge/AgentWorkOS-Stack-2563eb)](https://github.com/Harzva/AgentWorkOS)
+[![Visibility](https://img.shields.io/badge/visibility-public-0f766e)](https://github.com/Harzva/harzva-agentworkos-stack)
+[![Runtime](https://img.shields.io/badge/runtimes-Codex%20%2B%20Claude%20Code-f59e0b)](#runtime-targets)
+[![Safety](https://img.shields.io/badge/secrets-not%20included-111827)](#safety-boundaries)
 
-## Restore on a new machine
+[Quick restore](#quick-restore) · [Platform profiles](#platform-profiles) · [What it installs](#what-this-stack-installs) · [Runtime targets](#runtime-targets) · [Roadmp](#roadmp)
 
-Install AgentWorkOS first:
+</div>
+
+## What this is
+
+`harzva-agentworkos-stack` is the portable environment declaration for a safe-core Harzva AgentOS setup.
+
+It is not the AgentWorkOS package manager itself. The split is intentional:
+
+| Repository | Role |
+| --- | --- |
+| [`Harzva/AgentWorkOS`](https://github.com/Harzva/AgentWorkOS) | Generic `aw` CLI, manifest format, lockfile, sync, install, and doctor commands. |
+| [`Harzva/harzva-agentworkos-stack`](https://github.com/Harzva/harzva-agentworkos-stack) | Harzva's public-safe stack manifest for restoring skills, roles, terms, rules, and repo references. |
+| `~/.codex`, `~/.claude` | Runtime projections generated from the stack. They are install targets, not the only source of truth. |
+
+The goal is simple: make a new machine able to reconstruct the same public-safe AgentOS foundation from GitHub, without copying secrets or raw local history.
+
+## Quick restore
+
+Install the AgentWorkOS CLI first:
 
 ```powershell
 python -m pip install git+https://github.com/Harzva/AgentWorkOS.git
 ```
 
-Dry-run the stack install:
+Preview the restore plan:
 
 ```powershell
 aw install github:Harzva/harzva-agentworkos-stack --target all
@@ -22,41 +45,179 @@ aw doctor
 Apply only after the dry-run looks correct:
 
 ```powershell
-aw install github:Harzva/harzva-agentworkos-stack --target all --apply
+aw install github:Harzva/harzva-agentworkos-stack --target all --profile windows-desktop --apply
 aw scan
 aw doctor
 ```
 
-Windows wrapper after cloning this repository:
+Use the profile that matches the machine:
+
+```powershell
+aw install github:Harzva/harzva-agentworkos-stack --target all --profile windows-desktop
+aw install github:Harzva/harzva-agentworkos-stack --target all --profile mac-dev
+aw install github:Harzva/harzva-agentworkos-stack --target all --profile linux-dev
+aw install github:Harzva/harzva-agentworkos-stack --target all --profile linux-server
+```
+
+If you cloned this repository locally, use the wrapper:
 
 ```powershell
 pwsh -ExecutionPolicy Bypass -File .\install.ps1 -Target all
 pwsh -ExecutionPolicy Bypass -File .\install.ps1 -Target all -Apply
 ```
 
-## What this stack includes
+> `install` and `sync` are dry-run by default. Runtime writes require `--apply`.
 
-- AgentWorkOS inventory skill.
-- Public-safe reusable skills used in the Harzva AgentOS workflow.
-- Portable task role cards for Codex and Claude Code projection.
-- Public-safe operating rules and term map.
-- Repository references needed to bootstrap the stack.
+## How the stack works
 
-## Safety boundaries
+```mermaid
+flowchart LR
+  A["GitHub stack repo\nharzva-agentworkos-stack"] --> B["AgentWorkOS CLI\naw install / aw sync"]
+  B --> C["Source cache\n~/.agentworkos/sources"]
+  B --> D["Codex runtime\n~/.codex/skills + agents"]
+  B --> E["Claude Code runtime\n~/.claude/skills + agents"]
+  B --> F["Managed repo refs\n~/.agentworkos/repos"]
+```
 
-This public stack intentionally excludes:
+The manifest declares packages once, then projects them into runtime-specific targets for Codex and Claude Code.
 
-- tokens, cookies, auth files, `.env`, and credential dumps.
-- raw chat logs or full memory stores.
-- machine-specific absolute local paths.
-- private repository coordinates unless documented as optional local overrides.
+## Platform profiles
 
-Use `agentworkos.local.toml` for machine-specific paths or private additions. That file is ignored by Git.
+This stack stays in one repository. Platform differences are represented as profiles, not separate repos.
 
-## Repository roles
+| Profile | Machine class | Current behavior |
+| --- | --- | --- |
+| `base` | Any machine | Terms, rules, inventory skill, and core repo references. |
+| `agents` | Any machine | `base` plus portable task role cards. |
+| `skills` | Any machine | `agents` plus public reusable skills. |
+| `safe-core` | Any machine | Default public-safe shared foundation. |
+| `windows-desktop` | Current Windows workstation | Extends `safe-core`; Windows-only private additions belong in `agentworkos.local.toml`. |
+| `mac-dev` | macOS development machine | Extends `safe-core`; future public-safe macOS packages can be added here. |
+| `linux-dev` | Linux workstation | Extends `safe-core`; future public-safe Linux dev packages can be added here. |
+| `linux-server` | Linux server | Extends `safe-core`; keep this profile CLI/server oriented. |
+| `full` | Maintainer audit | Every package and repo reference declared by this stack. |
+
+Decision rule:
 
 ```text
-AgentWorkOS                  generic CLI and package manager
-harzva-agentworkos-stack     Harzva safe-core AgentOS environment declaration
-~/.codex and ~/.claude       runtime projections generated by AgentWorkOS
+shared capability -> safe-core
+platform capability -> platform profile
+machine-private path, key, account, or local repo -> agentworkos.local.toml
+separate security boundary -> separate stack repository
 ```
+## What this stack installs
+
+### Core AgentOS packages
+
+| Package | Type | Purpose |
+| --- | --- | --- |
+| `agentworkos-inventory` | skill | Scan and package-manage a local AgentWorkOS environment. |
+| `TERMS.md` | terms | Portable glossary for terms like `AgentWorkOS Stack`, `runtime projection`, and `三端同步`. |
+| `AGENTS.md` | rule | Public-safe operating rules for stack changes. |
+
+### Portable role cards
+
+| Role | Purpose |
+| --- | --- |
+| `project-inventory` | Inspect repo, manifest, runtime, and sync state before changes. |
+| `role-planner` | Keep task role boundaries separate from model execution channels. |
+| `quality-reviewer` | Review stack safety, lockfile consistency, and release risk. |
+| `release-manager` | Confirm owner, visibility, README quality, lockfile, and publish evidence. |
+
+### Public reusable skills
+
+| Skill source | Runtime install target |
+| --- | --- |
+| `Just-Agent/README-Design-Skill` | `skills/readme-design` |
+| `Just-Agent/AppPreviewLab-Skill` | `skills/app-preview-lab` |
+| `Just-Agent/Appui-Design-Skill` | `skills/appui-design` |
+| `Harzva/design-md-flow` | `skills/design-md-flow` |
+| `Harzva/ReadmeShowcaseScreenshot-Skill` | `skills/readme-showcase-screenshot` |
+| `Harzva/android-release-emulator-qa-skill` | `skills/android-release-emulator-qa-skill` |
+| `Harzva/make_windows_silky_Patch` | `skills/make-windows-silky` |
+
+## Runtime targets
+
+| Runtime | Projected content |
+| --- | --- |
+| Codex | Skills under `~/.codex/skills`, role cards under `~/.codex/agents/roles`, stack rules and terms. |
+| Claude Code | Skills under `~/.claude/skills`, subagent cards under `~/.claude/agents`, stack rules and terms. |
+| AgentWorkOS cache | Git package sources and managed repo references under `~/.agentworkos`. |
+
+## Profiles
+
+| Profile | Use case |
+| --- | --- |
+| `base` | Terms, rules, inventory skill, and core repo references. |
+| `agents` | `base` plus portable task role cards. |
+| `skills` | `agents` plus public reusable skills. |
+| `safe-core` | Default public-safe shared foundation. |`r`n| `windows-desktop` | Current Windows workstation profile; extends `safe-core`. |`r`n| `mac-dev` | macOS development profile; extends `safe-core`. |`r`n| `linux-dev` | Linux workstation profile; extends `safe-core`. |`r`n| `linux-server` | Linux server profile; extends `safe-core`. |`r`n| `full` | Every package and repo reference declared by this stack. |
+
+Examples:
+
+```powershell
+aw doctor --manifest agentworkos.toml --profile windows-desktop`r`naw sync --manifest agentworkos.toml --target codex --profile agents`r`naw sync --manifest agentworkos.toml --target all --profile windows-desktop --apply
+```
+
+## Roadmp
+
+Roadmp plans in this repo use the local `roadmp-writer` shape: objective, rules, safety, baseline, decisions, phases, test plan, assumptions, and evidence-backed checkboxes.
+
+Current governance file:
+
+```text
+ROADMP.md
+```
+## Safety boundaries
+
+This is a public repository, so it deliberately excludes:
+
+- tokens, cookies, auth files, `.env`, and credential dumps.
+- raw chat logs, transcripts, or full memory stores.
+- machine-specific absolute local paths.
+- private repository coordinates.
+- provider configuration and account switcher state.
+
+Use this ignored file for private machine-specific additions:
+
+```text
+agentworkos.local.toml
+```
+
+## Repository layout
+
+```text
+harzva-agentworkos-stack/
+├─ agentworkos.toml       # stack manifest
+├─ agentworkos.lock.json  # resolved package and repo lockfile
+├─ install.ps1            # local Windows restore wrapper
+├─ TERMS.md               # portable term map
+├─ AGENTS.md              # public-safe operating rules
+└─ agents/roles/          # portable role cards
+```
+
+## Operator checklist
+
+Before publishing a stack update:
+
+```powershell
+aw lock --manifest agentworkos.toml
+aw doctor --manifest agentworkos.toml --profile safe-core
+aw install github:Harzva/harzva-agentworkos-stack --target all
+git status --short --branch
+```
+
+Accept the update only when:
+
+| Check | Required state |
+| --- | --- |
+| Manifest | Public-safe and no absolute private paths. |
+| Lockfile | Regenerated after package or repo changes. |
+| Dry-run | Shows only intended runtime projections. |
+| Secrets | No credential-like content in tracked files. |
+| GitHub | Local branch pushed to `Harzva/harzva-agentworkos-stack`. |
+
+## License
+
+This stack is published as configuration and documentation for a public-safe Harzva AgentOS environment. Check each referenced package repository for its own license.
+

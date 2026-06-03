@@ -2,7 +2,7 @@
 param(
     [ValidateSet("codex", "claude-code", "claude", "all")]
     [string]$Target = "all",
-    [ValidateSet("base", "agents", "skills", "safe-core", "full")]
+    [ValidateSet("base", "agents", "skills", "safe-core", "windows-desktop", "mac-dev", "linux-dev", "linux-server", "full")]
     [string]$Profile = "safe-core",
     [switch]$Apply
 )
@@ -22,3 +22,4 @@ if ($Apply) {
 }
 
 aw @syncArgs
+
