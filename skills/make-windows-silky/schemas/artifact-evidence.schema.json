@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "make_windows_silky_Patch/schemas/artifact-evidence.schema.json",
+  "title": "make_windows_silky_Patch artifact evidence manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "artifact", "source", "smoke", "release", "privacy"],
+  "properties": {
+    "schema": {
+      "const": "make_windows_silky_Patch.artifact-evidence.v1"
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "name", "version", "bytes", "sha256", "modified"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]{64}$"
+        },
+        "modified": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project", "commit", "build_command", "builder"],
+      "properties": {
+        "project": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "build_command": {
+          "type": "string"
+        },
+        "builder": {
+          "type": "string"
+        }
+      }
+    },
+    "smoke": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "install_result", "launch_result", "log_path", "screenshot_path"],
+      "properties": {
+        "result": {
+          "type": "string",
+          "minLength": 1
+        },
+        "install_result": {
+          "type": "string"
+        },
+        "launch_result": {
+          "type": "string"
+        },
+        "log_path": {
+          "type": "string"
+        },
+        "screenshot_path": {
+          "type": "string"
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "notes_path", "decision", "reviewer", "reviewed_at"],
+      "properties": {
+        "target": {
+          "type": "string"
+        },
+        "notes_path": {
+          "type": "string"
+        },
+        "decision": {
+          "enum": ["ship", "fix", "archive", "assetize"]
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contains_secrets", "redaction_notes"],
+      "properties": {
+        "contains_secrets": {
+          "type": "boolean"
+        },
+        "redaction_notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

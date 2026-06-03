@@ -1,0 +1,12 @@
+{
+  "name": "app-preview-lab-skill",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Codex skill for local HTML previews of APK, IPA, desktop, and WebView app packages.",
+  "scripts": {
+    "create": "node scripts/create-preview.mjs",
+    "verify": "node scripts/verify-preview.mjs assets/templates/mobile-preview.html"
+  },
+  "license": "MIT"
+}

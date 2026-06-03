@@ -1,0 +1,35 @@
+{
+  "schema": "make_windows_silky_Patch.artifact-evidence.v1",
+  "artifact": {
+    "path": "",
+    "name": "",
+    "version": "",
+    "bytes": 0,
+    "sha256": "",
+    "modified": ""
+  },
+  "source": {
+    "project": "",
+    "commit": "",
+    "build_command": "",
+    "builder": ""
+  },
+  "smoke": {
+    "result": "pending",
+    "install_result": "",
+    "launch_result": "",
+    "log_path": "",
+    "screenshot_path": ""
+  },
+  "release": {
+    "target": "",
+    "notes_path": "",
+    "decision": "fix",
+    "reviewer": "",
+    "reviewed_at": ""
+  },
+  "privacy": {
+    "contains_secrets": false,
+    "redaction_notes": ""
+  }
+}

@@ -122,7 +122,7 @@
       ],
       "ref": "main",
       "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/AgentWorkOS.git/': Failed to connect to github.com port 443 after 21127 ms: Could not connect to server"
+      "commit": "9c8bed9f83196c4c1c285be5d206c88d51719803"
     },
     {
       "id": "io.github.harzva.agentworkos.terms",
@@ -259,8 +259,8 @@
     {
       "id": "io.github.just-agent.readme-design",
       "type": "skill",
-      "source": "git+https://github.com/Just-Agent/README-Design-Skill.git",
-      "path": "",
+      "source": ".",
+      "path": "skills/readme-design",
       "install_to": "skills/readme-design",
       "targets": [
         {
@@ -274,14 +274,17 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Just-Agent/README-Design-Skill.git/': Failed to connect to github.com port 443 after 21068 ms: Could not connect to server"
+      "resolved_path": ".",
+      "source_kind": "git-local",
+      "remote": "https://github.com/Harzva/harzva-agentworkos-stack.git",
+      "commit": "e5dda35481a400df2ac079f10b77295ebfdfa667",
+      "content_hash": "eb9065d2d534829739864ef33a1591d2708328ab202d6790c01143d1bdc9db03"
     },
     {
       "id": "io.github.just-agent.app-preview-lab",
       "type": "skill",
-      "source": "git+https://github.com/Just-Agent/AppPreviewLab-Skill.git",
-      "path": "",
+      "source": ".",
+      "path": "skills/app-preview-lab",
       "install_to": "skills/app-preview-lab",
       "targets": [
         {
@@ -295,14 +298,17 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Just-Agent/AppPreviewLab-Skill.git/': Failed to connect to github.com port 443 after 21087 ms: Could not connect to server"
+      "resolved_path": ".",
+      "source_kind": "git-local",
+      "remote": "https://github.com/Harzva/harzva-agentworkos-stack.git",
+      "commit": "e5dda35481a400df2ac079f10b77295ebfdfa667",
+      "content_hash": "eb9065d2d534829739864ef33a1591d2708328ab202d6790c01143d1bdc9db03"
     },
     {
       "id": "io.github.just-agent.appui-design",
       "type": "skill",
-      "source": "git+https://github.com/Just-Agent/Appui-Design-Skill.git",
-      "path": "",
+      "source": ".",
+      "path": "skills/appui-design",
       "install_to": "skills/appui-design",
       "targets": [
         {
@@ -316,14 +322,17 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Just-Agent/Appui-Design-Skill.git/': Failed to connect to github.com port 443 after 21132 ms: Could not connect to server"
+      "resolved_path": ".",
+      "source_kind": "git-local",
+      "remote": "https://github.com/Harzva/harzva-agentworkos-stack.git",
+      "commit": "e5dda35481a400df2ac079f10b77295ebfdfa667",
+      "content_hash": "eb9065d2d534829739864ef33a1591d2708328ab202d6790c01143d1bdc9db03"
     },
     {
       "id": "io.github.harzva.design-md-flow",
       "type": "skill",
-      "source": "git+https://github.com/Harzva/design-md-flow.git",
-      "path": "",
+      "source": ".",
+      "path": "skills/design-md-flow",
       "install_to": "skills/design-md-flow",
       "targets": [
         {
@@ -337,14 +346,17 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/design-md-flow.git/': Failed to connect to github.com port 443 after 21084 ms: Could not connect to server"
+      "resolved_path": ".",
+      "source_kind": "git-local",
+      "remote": "https://github.com/Harzva/harzva-agentworkos-stack.git",
+      "commit": "e5dda35481a400df2ac079f10b77295ebfdfa667",
+      "content_hash": "eb9065d2d534829739864ef33a1591d2708328ab202d6790c01143d1bdc9db03"
     },
     {
       "id": "io.github.harzva.readme-showcase-screenshot",
       "type": "skill",
-      "source": "git+https://github.com/Harzva/ReadmeShowcaseScreenshot-Skill.git",
-      "path": "",
+      "source": ".",
+      "path": "skills/readme-showcase-screenshot",
       "install_to": "skills/readme-showcase-screenshot",
       "targets": [
         {
@@ -358,14 +370,17 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/ReadmeShowcaseScreenshot-Skill.git/': Failed to connect to github.com port 443 after 21077 ms: Could not connect to server"
+      "resolved_path": ".",
+      "source_kind": "git-local",
+      "remote": "https://github.com/Harzva/harzva-agentworkos-stack.git",
+      "commit": "e5dda35481a400df2ac079f10b77295ebfdfa667",
+      "content_hash": "eb9065d2d534829739864ef33a1591d2708328ab202d6790c01143d1bdc9db03"
     },
     {
       "id": "io.github.harzva.android-release-emulator-qa",
       "type": "skill",
-      "source": "git+https://github.com/Harzva/android-release-emulator-qa-skill.git",
-      "path": "",
+      "source": ".",
+      "path": "skills/android-release-emulator-qa-skill",
       "install_to": "skills/android-release-emulator-qa-skill",
       "targets": [
         {
@@ -379,14 +394,17 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/android-release-emulator-qa-skill.git/': Failed to connect to github.com port 443 after 21094 ms: Could not connect to server"
+      "resolved_path": ".",
+      "source_kind": "git-local",
+      "remote": "https://github.com/Harzva/harzva-agentworkos-stack.git",
+      "commit": "e5dda35481a400df2ac079f10b77295ebfdfa667",
+      "content_hash": "eb9065d2d534829739864ef33a1591d2708328ab202d6790c01143d1bdc9db03"
     },
     {
       "id": "io.github.harzva.make-windows-silky",
       "type": "skill",
-      "source": "git+https://github.com/Harzva/make_windows_silky_Patch.git",
-      "path": "",
+      "source": ".",
+      "path": "skills/make-windows-silky",
       "install_to": "skills/make-windows-silky",
       "targets": [
         {
@@ -400,8 +418,11 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/make_windows_silky_Patch.git/': Failed to connect to github.com port 443 after 21080 ms: Could not connect to server"
+      "resolved_path": ".",
+      "source_kind": "git-local",
+      "remote": "https://github.com/Harzva/harzva-agentworkos-stack.git",
+      "commit": "e5dda35481a400df2ac079f10b77295ebfdfa667",
+      "content_hash": "eb9065d2d534829739864ef33a1591d2708328ab202d6790c01143d1bdc9db03"
     }
   ],
   "repos": [
@@ -410,14 +431,14 @@
       "source": "https://github.com/Harzva/AgentWorkOS.git",
       "checkout_to": "repos/AgentWorkOS",
       "ref": "main",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/AgentWorkOS.git/': Failed to connect to github.com port 443 after 21041 ms: Could not connect to server"
+      "commit": "9c8bed9f83196c4c1c285be5d206c88d51719803"
     },
     {
       "id": "io.github.harzva.agentworkos-stack",
       "source": "https://github.com/Harzva/harzva-agentworkos-stack.git",
       "checkout_to": "repos/harzva-agentworkos-stack",
       "ref": "main",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/harzva-agentworkos-stack.git/': Failed to connect to github.com port 443 after 21124 ms: Could not connect to server"
+      "commit": "e5dda35481a400df2ac079f10b77295ebfdfa667"
     }
   ]
 }

@@ -1,0 +1,35 @@
+{
+  "schema": "make_windows_silky_Patch.artifact-evidence.v1",
+  "artifact": {
+    "path": "dist/ExampleApp-v1.0.0-windows-x64.exe",
+    "name": "ExampleApp-v1.0.0-windows-x64.exe",
+    "version": "1.0.0",
+    "bytes": 1048576,
+    "sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+    "modified": "2026-05-20T00:00:00Z"
+  },
+  "source": {
+    "project": "ExampleApp",
+    "commit": "abc1234",
+    "build_command": "npm run build:windows",
+    "builder": "release-bot"
+  },
+  "smoke": {
+    "result": "pass",
+    "install_result": "Installer opened and completed on Windows test VM.",
+    "launch_result": "Application reached the main window.",
+    "log_path": "release-proof/ExampleApp-v1.0.0-smoke.log",
+    "screenshot_path": "release-proof/ExampleApp-v1.0.0-main-window.png"
+  },
+  "release": {
+    "target": "GitHub Release v1.0.0",
+    "notes_path": "CHANGELOG.md#100---2026-05-20",
+    "decision": "ship",
+    "reviewer": "release-reviewer",
+    "reviewed_at": "2026-05-20T00:10:00Z"
+  },
+  "privacy": {
+    "contains_secrets": false,
+    "redaction_notes": "Example values only; no private paths or credentials."
+  }
+}

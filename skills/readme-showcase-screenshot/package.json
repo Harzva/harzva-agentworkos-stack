@@ -1,0 +1,29 @@
+{
+  "name": "readme-showcase-screenshot-skill",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Codex skill for generating README-ready screenshots, GIFs, videos, hero images, and preview galleries from local projects.",
+  "scripts": {
+    "discover": "node scripts/discover-project.mjs --write showcase.config.json",
+    "static": "node scripts/capture-static.mjs --config showcase.config.json",
+    "motion": "node scripts/capture-motion.mjs --config showcase.config.json",
+    "hero": "node scripts/compose-hero.mjs --config showcase.config.json",
+    "gallery": "node scripts/build-preview-gallery.mjs --config showcase.config.json",
+    "readme": "node scripts/update-readme.mjs --config showcase.config.json",
+    "verify": "node scripts/verify-showcase.mjs --config showcase.config.json",
+    "validate:skill": "python C:/Users/harzva/.codex/skills/.system/skill-creator/scripts/quick_validate.py ."
+  },
+  "devDependencies": {
+    "playwright": "latest"
+  },
+  "keywords": [
+    "codex-skill",
+    "readme",
+    "screenshot",
+    "playwright",
+    "gif",
+    "preview-gallery"
+  ],
+  "license": "MIT"
+}

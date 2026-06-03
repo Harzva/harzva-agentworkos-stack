@@ -1,0 +1,13 @@
+android-release-qa-output/
+qa-output/
+*.apk
+*.aab
+*.ipa
+*.jks
+*.keystore
+*.log
+__pycache__/
+.pytest_cache/
+.DS_Store
+Thumbs.db
+

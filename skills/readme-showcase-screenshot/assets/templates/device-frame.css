@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+.showcase-browser-frame {
+  border: 1px solid rgba(148, 163, 184, 0.38);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f8fafc;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.28);
+}
+
+.showcase-browser-frame::before {
+  content: "";
+  display: block;
+  height: 34px;
+  background:
+    radial-gradient(circle at 18px 17px, #94a3b8 0 5px, transparent 6px),
+    radial-gradient(circle at 38px 17px, #94a3b8 0 5px, transparent 6px),
+    radial-gradient(circle at 58px 17px, #94a3b8 0 5px, transparent 6px),
+    #e2e8f0;
+}
+
+.showcase-phone-frame {
+  border: 8px solid #020617;
+  border-radius: 34px;
+  overflow: hidden;
+  background: #f8fafc;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.3);
+}

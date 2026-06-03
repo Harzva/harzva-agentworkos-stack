@@ -81,6 +81,27 @@ flowchart LR
 
 The manifest declares packages once, then projects them into runtime-specific targets for Codex and Claude Code.
 
+## Monorepo mode
+
+This stack now vendors selected personal AgentOS skills under `skills/*` while preserving the original package IDs and runtime install targets.
+
+Why this shape:
+
+| Choice | Reason |
+| --- | --- |
+| Keep one stack repo | Fewer repositories to remember and restore. |
+| Keep package IDs stable | Existing profiles and runtime targets stay compatible. |
+| Vendor selected skills | New machines can restore the safe-core toolset from this stack. |
+| Keep external repos only when needed | Mature or independently shared skills can still live in separate repositories later. |
+
+Compatible-upgrade rule:
+
+```text
+do not rename profiles
+do not change install_to targets
+do not remove existing packages without a migration step
+vendored skill path changes must keep runtime projection stable
+```
 ## Platform profiles
 
 This stack stays in one repository. Platform differences are represented as profiles, not separate repos.
@@ -124,17 +145,17 @@ separate security boundary -> separate stack repository
 | `quality-reviewer` | Review stack safety, lockfile consistency, and release risk. |
 | `release-manager` | Confirm owner, visibility, README quality, lockfile, and publish evidence. |
 
-### Public reusable skills
+### Vendored public-safe skills
 
-| Skill source | Runtime install target |
+| Vendored path | Runtime install target |
 | --- | --- |
-| `Just-Agent/README-Design-Skill` | `skills/readme-design` |
-| `Just-Agent/AppPreviewLab-Skill` | `skills/app-preview-lab` |
-| `Just-Agent/Appui-Design-Skill` | `skills/appui-design` |
-| `Harzva/design-md-flow` | `skills/design-md-flow` |
-| `Harzva/ReadmeShowcaseScreenshot-Skill` | `skills/readme-showcase-screenshot` |
-| `Harzva/android-release-emulator-qa-skill` | `skills/android-release-emulator-qa-skill` |
-| `Harzva/make_windows_silky_Patch` | `skills/make-windows-silky` |
+| `skills/readme-design` | `skills/readme-design` |
+| `skills/app-preview-lab` | `skills/app-preview-lab` |
+| `skills/appui-design` | `skills/appui-design` |
+| `skills/design-md-flow` | `skills/design-md-flow` |
+| `skills/readme-showcase-screenshot` | `skills/readme-showcase-screenshot` |
+| `skills/android-release-emulator-qa-skill` | `skills/android-release-emulator-qa-skill` |
+| `skills/make-windows-silky` | `skills/make-windows-silky` |
 
 ## Runtime targets
 
@@ -193,7 +214,8 @@ harzva-agentworkos-stack/
 ├─ install.ps1            # local Windows restore wrapper
 ├─ TERMS.md               # portable term map
 ├─ AGENTS.md              # public-safe operating rules
-└─ agents/roles/          # portable role cards
+├─ agents/roles/          # portable role cards
+└─ skills/                # vendored public-safe skills
 ```
 
 ## Operator checklist
@@ -220,4 +242,5 @@ Accept the update only when:
 ## License
 
 This stack is published as configuration and documentation for a public-safe Harzva AgentOS environment. Check each referenced package repository for its own license.
+
 

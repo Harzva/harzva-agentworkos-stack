@@ -1,0 +1,4 @@
+interface:
+  display_name: "README Showcase Screenshot"
+  short_description: "README screenshots, GIFs, and galleries."
+  default_prompt: "Generate polished README screenshots, motion demos, a hero image, and a preview gallery for this local project."

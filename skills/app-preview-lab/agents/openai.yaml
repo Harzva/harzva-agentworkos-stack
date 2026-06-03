@@ -1,0 +1,6 @@
+interface:
+  display_name: "App Preview Lab"
+  short_description: "Preview app packages locally before install."
+  default_prompt: "Use $app-preview-lab to create a local HTML preview for an APK, IPA, desktop package, or mobile app UI."
+policy:
+  allow_implicit_invocation: true

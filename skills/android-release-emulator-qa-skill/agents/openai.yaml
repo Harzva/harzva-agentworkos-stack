@@ -1,0 +1,7 @@
+interface:
+  display_name: "Android Release Emulator QA"
+  short_description: "Validate APK releases with emulator evidence."
+  default_prompt: "Use $android-release-emulator-qa-skill to validate this Android release APK in an emulator and summarize install, launch, UI, logs, and release artifacts."
+policy:
+  allow_implicit_invocation: true
+

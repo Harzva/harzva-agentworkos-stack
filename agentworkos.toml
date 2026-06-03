@@ -184,10 +184,9 @@ adapter = "agent-to-claude-subagent"
 [[packages]]
 id = "io.github.just-agent.readme-design"
 type = "skill"
-source = "git+https://github.com/Just-Agent/README-Design-Skill.git"
+source = "."
+path = "skills/readme-design"
 install_to = "skills/readme-design"
-ref = "main"
-
 [[packages.targets]]
 runtime = "codex"
 install_to = "skills/readme-design"
@@ -200,10 +199,9 @@ adapter = "skill-to-claude-skill"
 [[packages]]
 id = "io.github.just-agent.app-preview-lab"
 type = "skill"
-source = "git+https://github.com/Just-Agent/AppPreviewLab-Skill.git"
+source = "."
+path = "skills/app-preview-lab"
 install_to = "skills/app-preview-lab"
-ref = "main"
-
 [[packages.targets]]
 runtime = "codex"
 install_to = "skills/app-preview-lab"
@@ -216,10 +214,9 @@ adapter = "skill-to-claude-skill"
 [[packages]]
 id = "io.github.just-agent.appui-design"
 type = "skill"
-source = "git+https://github.com/Just-Agent/Appui-Design-Skill.git"
+source = "."
+path = "skills/appui-design"
 install_to = "skills/appui-design"
-ref = "main"
-
 [[packages.targets]]
 runtime = "codex"
 install_to = "skills/appui-design"
@@ -232,10 +229,9 @@ adapter = "skill-to-claude-skill"
 [[packages]]
 id = "io.github.harzva.design-md-flow"
 type = "skill"
-source = "git+https://github.com/Harzva/design-md-flow.git"
+source = "."
+path = "skills/design-md-flow"
 install_to = "skills/design-md-flow"
-ref = "main"
-
 [[packages.targets]]
 runtime = "codex"
 install_to = "skills/design-md-flow"
@@ -248,10 +244,9 @@ adapter = "skill-to-claude-skill"
 [[packages]]
 id = "io.github.harzva.readme-showcase-screenshot"
 type = "skill"
-source = "git+https://github.com/Harzva/ReadmeShowcaseScreenshot-Skill.git"
+source = "."
+path = "skills/readme-showcase-screenshot"
 install_to = "skills/readme-showcase-screenshot"
-ref = "main"
-
 [[packages.targets]]
 runtime = "codex"
 install_to = "skills/readme-showcase-screenshot"
@@ -264,10 +259,9 @@ adapter = "skill-to-claude-skill"
 [[packages]]
 id = "io.github.harzva.android-release-emulator-qa"
 type = "skill"
-source = "git+https://github.com/Harzva/android-release-emulator-qa-skill.git"
+source = "."
+path = "skills/android-release-emulator-qa-skill"
 install_to = "skills/android-release-emulator-qa-skill"
-ref = "main"
-
 [[packages.targets]]
 runtime = "codex"
 install_to = "skills/android-release-emulator-qa-skill"
@@ -280,10 +274,9 @@ adapter = "skill-to-claude-skill"
 [[packages]]
 id = "io.github.harzva.make-windows-silky"
 type = "skill"
-source = "git+https://github.com/Harzva/make_windows_silky_Patch.git"
+source = "."
+path = "skills/make-windows-silky"
 install_to = "skills/make-windows-silky"
-ref = "main"
-
 [[packages.targets]]
 runtime = "codex"
 install_to = "skills/make-windows-silky"
@@ -304,4 +297,5 @@ id = "io.github.harzva.agentworkos-stack"
 source = "https://github.com/Harzva/harzva-agentworkos-stack.git"
 checkout_to = "repos/harzva-agentworkos-stack"
 ref = "main"
+
 

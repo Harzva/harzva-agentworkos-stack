@@ -57,13 +57,21 @@
 - [x] 更新 `README.md`，解释 one-stack/multi-profile 管理方式。
   - Evidence: 2026-06-03 README 增加 Platform profiles 和 Roadmp sections。
 
+### P0.5 - 兼容 monorepo 收敛
+
+- [x] 在 stack 仓库新增 `skills/*`，收敛当前 safe-core 依赖的 selected skills。
+  - Evidence: 2026-06-04 copied selected skill source assets into `skills/` without `.git`, `node_modules`, build cache, or IDE cache folders。
+- [x] 保持 package id 和 `install_to` 不变，仅把 selected skill source 切换为本仓库 local source。
+  - Evidence: 2026-06-04 `agentworkos.toml` uses `source = "."` plus `path = "skills/<name>"` for vendored skills。
+- [x] 更新 README 解释 monorepo mode 和 compatible-upgrade rule。
+  - Evidence: 2026-06-04 README adds Monorepo mode section。
 ### P1 - 平台能力扩展
 
 - [ ] 为 `windows-desktop` 增加 public-safe Windows 专属技能或 repo 引用。
 - [ ] 为 `mac-dev` 增加 public-safe macOS/iOS 开发能力。
 - [ ] 为 `linux-dev` 增加 public-safe Linux CLI/dev 能力。
 - [ ] 为 `linux-server` 增加 public-safe server/automation 能力。
-- [ ] 明确哪些能力只能写入 `agentworkos.local.toml`。
+- [ ] 明确哪些能力只能写入 `agentworkos.local.toml`。`r`n- [ ] 后续新 skill 默认先进入 stack monorepo，成熟到可独立复用时再拆出单仓库。
 
 ### P2 - 新机器恢复演练
 
@@ -95,3 +103,4 @@
 - 当前升级只声明平台 profile，不把私有机器配置公开化。
 - `linux2` 暂不作为公开 profile，除非后续证明它是稳定机器类别而不是单机差异。
 - `safe-core` 继续作为跨平台默认基础层。
+

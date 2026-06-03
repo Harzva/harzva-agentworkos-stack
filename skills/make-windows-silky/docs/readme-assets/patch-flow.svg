@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 540" role="img" aria-labelledby="title desc">
+  <title id="title">Windows silky token saver flow</title>
+  <desc id="desc">A workflow diagram showing audit, manifest, encoding gate, release preflight, and reusable AgentWorkOS assets as a token-saving trust loop.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1100" y2="540" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="120" y1="282" x2="980" y2="282" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="0.45" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-20%" width="120%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1100" height="540" rx="36" fill="url(#bg)"/>
+  <rect x="58" y="58" width="984" height="424" rx="30" fill="#ffffff" filter="url(#shadow)"/>
+  <path d="M182 282h736" stroke="url(#accent)" stroke-width="10" stroke-linecap="round" opacity="0.92"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <g transform="translate(92 198)">
+      <rect width="160" height="170" rx="22" fill="#ffffff" stroke="#0f766e" stroke-width="5"/>
+      <circle cx="80" cy="46" r="25" fill="#ccfbf1"/>
+      <text x="80" y="54" fill="#0f766e" font-size="24" font-weight="700" text-anchor="middle">1</text>
+      <text x="80" y="104" fill="#0f172a" font-size="25" font-weight="700" text-anchor="middle">Audit</text>
+      <text x="80" y="135" fill="#334155" font-size="15" text-anchor="middle">small context</text>
+    </g>
+    <g transform="translate(270 198)">
+      <rect width="160" height="170" rx="22" fill="#ffffff" stroke="#0f766e" stroke-width="5"/>
+      <circle cx="80" cy="46" r="25" fill="#dbeafe"/>
+      <text x="80" y="54" fill="#2563eb" font-size="24" font-weight="700" text-anchor="middle">2</text>
+      <text x="80" y="104" fill="#0f172a" font-size="25" font-weight="700" text-anchor="middle">Manifest</text>
+      <text x="80" y="135" fill="#334155" font-size="15" text-anchor="middle">hash + proof</text>
+    </g>
+    <g transform="translate(448 198)">
+      <rect width="160" height="170" rx="22" fill="#ffffff" stroke="#2563eb" stroke-width="5"/>
+      <circle cx="80" cy="46" r="25" fill="#e0e7ff"/>
+      <text x="80" y="54" fill="#4f46e5" font-size="24" font-weight="700" text-anchor="middle">3</text>
+      <text x="80" y="104" fill="#0f172a" font-size="24" font-weight="700" text-anchor="middle">Encoding</text>
+      <text x="80" y="135" fill="#334155" font-size="15" text-anchor="middle">block mojibake</text>
+    </g>
+    <g transform="translate(626 198)">
+      <rect width="160" height="170" rx="22" fill="#ffffff" stroke="#4f46e5" stroke-width="5"/>
+      <circle cx="80" cy="46" r="25" fill="#ede9fe"/>
+      <text x="80" y="54" fill="#7c3aed" font-size="24" font-weight="700" text-anchor="middle">4</text>
+      <text x="80" y="104" fill="#0f172a" font-size="24" font-weight="700" text-anchor="middle">Preflight</text>
+      <text x="80" y="135" fill="#334155" font-size="15" text-anchor="middle">release gate</text>
+    </g>
+    <g transform="translate(804 198)">
+      <rect width="160" height="170" rx="22" fill="#ffffff" stroke="#7c3aed" stroke-width="5"/>
+      <circle cx="80" cy="46" r="25" fill="#fce7f3"/>
+      <text x="80" y="54" fill="#be185d" font-size="24" font-weight="700" text-anchor="middle">5</text>
+      <text x="80" y="104" fill="#0f172a" font-size="25" font-weight="700" text-anchor="middle">Assets</text>
+      <text x="80" y="135" fill="#334155" font-size="15" text-anchor="middle">reuse proof</text>
+    </g>
+  </g>
+  <g fill="#334155" font-family="Segoe UI, Arial, sans-serif">
+    <text x="86" y="118" font-size="30" font-weight="700">Windows workbench token-saver loop</text>
+    <text x="86" y="158" font-size="19">Turn clutter into evidence, evidence into gates, and repeated context into reusable patches.</text>
+    <text x="86" y="424" font-size="18">Less rediscovery. No mystery artifacts. No release without proof.</text>
+  </g>
+</svg>

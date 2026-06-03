@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App Preview Lab</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #eef1f6;
+      --screen: #fbfcff;
+      --surface: #ffffff;
+      --surface-2: #f1f4fb;
+      --ink: #141822;
+      --muted: #6e7788;
+      --line: #dfe5ef;
+      --primary: #3152c6;
+      --primary-2: #68b7ff;
+      --accent: #f36c37;
+      --good: #2ca66f;
+      --shadow: 0 24px 80px rgba(18, 28, 49, .16);
+      --tight-shadow: 0 12px 30px rgba(18, 28, 49, .1);
+    }
+
+    body[data-theme="dark"] {
+      color-scheme: dark;
+      --page: #0f1117;
+      --screen: #151922;
+      --surface: #1e2430;
+      --surface-2: #283142;
+      --ink: #f3f6ff;
+      --muted: #a8b1c2;
+      --line: #313a4d;
+      --primary: #73a2ff;
+      --primary-2: #69d3b0;
+      --accent: #ff9a55;
+      --good: #67d391;
+      --shadow: 0 24px 80px rgba(0, 0, 0, .35);
+      --tight-shadow: 0 12px 30px rgba(0, 0, 0, .22);
+    }
+
+    body[data-theme="warm"] {
+      --page: #fff3e5;
+      --screen: #fff8ee;
+      --surface: #fffdf8;
+      --surface-2: #ffeddc;
+      --ink: #35170e;
+      --muted: #875f4c;
+      --line: #efceb8;
+      --primary: #ff6b35;
+      --primary-2: #ffbd5f;
+      --accent: #3152c6;
+      --good: #229865;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, var(--page), color-mix(in srgb, var(--screen) 76%, var(--page)));
+      color: var(--ink);
+      font-family: "Segoe UI", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: 0;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+
+    .lab {
+      width: min(1220px, 100%);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: minmax(340px, 430px) minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .lab > * { min-width: 0; }
+
+    .device-column {
+      position: sticky;
+      top: 18px;
+      display: grid;
+      place-items: center;
+    }
+
+    .phone {
+      width: min(410px, calc(100vw - 32px));
+      height: min(860px, calc(100vh - 36px));
+      min-height: 720px;
+      padding: 11px;
+      border-radius: 40px;
+      background: #11141c;
+      box-shadow: 0 26px 90px rgba(0,0,0,.32);
+    }
+
+    .screen {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 30px;
+      background: var(--screen);
+    }
+
+    .status {
+      height: 34px;
+      padding: 9px 18px 0;
+      display: flex;
+      justify-content: space-between;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 850;
+      background: var(--screen);
+    }
+
+    .status span:last-child {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .battery {
+      width: 24px;
+      height: 12px;
+      border: 1.5px solid currentColor;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .battery::before {
+      content: "";
+      position: absolute;
+      inset: 2px 7px 2px 2px;
+      border-radius: 2px;
+      background: currentColor;
+    }
+
+    .webview {
+      display: none;
+      width: 100%;
+      height: calc(100% - 34px);
+      border: 0;
+      background: #0c0f14;
+    }
+
+    body[data-mode="webview"] .webview { display: block; }
+    body[data-mode="webview"] .native { display: none; }
+
+    .native {
+      height: calc(100% - 34px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scroll {
+      flex: 1;
+      overflow: auto;
+      padding: 16px 18px 94px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: var(--tight-shadow);
+      font-weight: 950;
+    }
+
+    .brand strong {
+      display: block;
+      overflow-wrap: anywhere;
+      font-size: 17px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 900;
+      box-shadow: var(--tight-shadow);
+    }
+
+    .hero, .card, .panel, .metric {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      box-shadow: var(--tight-shadow);
+    }
+
+    .hero {
+      padding: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -44px;
+      bottom: -48px;
+      width: 150px;
+      height: 150px;
+      border: 18px solid color-mix(in srgb, var(--primary-2) 22%, transparent);
+      border-radius: 42px;
+      transform: rotate(18deg);
+    }
+
+    .kicker {
+      width: fit-content;
+      max-width: 100%;
+      padding: 6px 9px;
+      border-radius: 999px;
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .hero h1, .intro h1 {
+      margin: 14px 0 8px;
+      line-height: 1.03;
+      overflow-wrap: anywhere;
+    }
+
+    .hero h1 { max-width: 290px; font-size: 30px; }
+    .hero p, .intro p, .muted { color: var(--muted); line-height: 1.6; }
+    .hero p { max-width: 290px; margin: 0; position: relative; z-index: 1; }
+
+    .actions, .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .primary, .ghost, .chip {
+      min-height: 36px;
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .primary {
+      border-color: transparent;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+    }
+
+    .ghost, .chip {
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .chip[aria-pressed="true"] {
+      color: var(--primary);
+      border-color: color-mix(in srgb, var(--primary) 42%, var(--line));
+      background: color-mix(in srgb, var(--primary) 10%, var(--surface));
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+
+    .metric { padding: 12px; min-height: 78px; }
+    .metric strong { display: block; font-size: 24px; line-height: 1; }
+    .metric span { display: block; margin-top: 8px; color: var(--muted); font-size: 12px; }
+
+    .section-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 10px;
+      margin: 18px 0 10px;
+    }
+
+    .section-row h2 { margin: 0; font-size: 18px; }
+
+    .cards { display: grid; gap: 10px; }
+    .card { padding: 13px; }
+    .card strong { display: block; overflow-wrap: anywhere; }
+    .card p { margin: 7px 0 10px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { padding: 4px 7px; border-radius: 7px; background: var(--surface-2); color: var(--muted); font-size: 11px; font-weight: 800; }
+
+    .bottom {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 12px;
+      height: 70px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 4px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      box-shadow: 0 18px 40px rgba(0,0,0,.12);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      border: 0;
+      border-radius: 15px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 850;
+    }
+
+    .nav[aria-current="page"] {
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+
+    .side { padding-bottom: 40px; }
+    .intro, .panel {
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+
+    .intro {
+      border: 1px solid color-mix(in srgb, var(--primary) 20%, var(--line));
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--surface) 78%, transparent);
+      box-shadow: var(--shadow);
+    }
+
+    .intro h1 {
+      max-width: 800px;
+      font-size: clamp(36px, 6vw, 72px);
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+      gap: 14px;
+    }
+
+    .panel h2 { margin: 0 0 10px; font-size: 18px; }
+    .note {
+      padding: 13px;
+      border: 1px dashed color-mix(in srgb, var(--primary) 36%, var(--line));
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--primary) 7%, transparent);
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 900px) {
+      .lab, .panel-grid { grid-template-columns: 1fr; }
+      .device-column { position: relative; top: auto; }
+    }
+
+    @media (max-width: 520px) {
+      .lab { padding: 12px; }
+      .phone { width: min(360px, calc(100vw - 24px)); height: 820px; min-height: 690px; border-radius: 34px; }
+      .screen { border-radius: 27px; }
+      .scroll { padding: 14px 14px 92px; }
+      .metrics { grid-template-columns: 1fr; }
+      .intro h1 { font-size: 34px; }
+    }
+  </style>
+</head>
+<body data-app-preview-lab data-mode="webview" data-theme="light">
+  <script id="preview-config" type="application/json">__APP_PREVIEW_CONFIG__</script>
+  <main class="lab">
+    <section class="device-column" aria-label="App preview device">
+      <div class="phone">
+        <div class="screen">
+          <div class="status"><span>21:24</span><span>5G <span class="battery" aria-hidden="true"></span></span></div>
+          <iframe class="webview" title="Exact app preview"></iframe>
+          <div class="native">
+            <div class="scroll" id="appSurface"></div>
+            <nav class="bottom" id="bottomNav"></nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="side">
+      <div class="intro">
+        <div class="kicker">App Preview Lab</div>
+        <h1 id="pageTitle">Local package preview</h1>
+        <p id="pageLead">Open this file locally to preview app content and rehearse native UI states before rebuilding packages.</p>
+      </div>
+      <div class="panel-grid">
+        <div class="panel">
+          <h2 id="whyTitle">Preview workflow</h2>
+          <p class="muted" id="whyText">Use exact WebView mode for real HTML entries, then switch to native modes for Android, iOS, or desktop UI rehearsal.</p>
+          <div class="cards" id="workflowCards"></div>
+        </div>
+        <aside class="panel">
+          <h2>Controls</h2>
+          <p class="note" id="modeNote"></p>
+          <div class="chips" id="modeControls"></div>
+          <div class="chips" id="themeControls"></div>
+          <div class="chips" id="langControls"></div>
+          <div class="actions"><a class="primary" id="exactLink">Open exact source</a></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const fallbackConfig = {
+      appName: "DemoApp",
+      tagline: "Package preview without reinstall loops",
+      exactUrl: "./app.html",
+      defaultMode: "webview",
+      modes: ["webview", "android", "ios", "desktop"],
+      themes: ["light", "dark", "warm"],
+      languages: ["en", "zh"],
+      tabs: ["home", "releases", "downloads", "security"],
+      metrics: [["3", "Platforms"], ["4", "States"], ["1", "Exact source"]],
+      cards: [
+        { title: "Release asset", text: "Preview installer, package, or release metadata.", tags: ["apk", "ipa", "exe"] },
+        { title: "Safety surface", text: "Show permissions, hashes, signatures, and upstream links.", tags: ["SHA256", "signature"] },
+        { title: "Native rehearsal", text: "Check theme, language, density, navigation, and empty states.", tags: ["Android", "iOS"] }
+      ]
+    };
+
+    const rawConfig = document.getElementById("preview-config").textContent.trim();
+    const config = rawConfig.startsWith("__") ? fallbackConfig : { ...fallbackConfig, ...JSON.parse(rawConfig) };
+    const params = new URLSearchParams(location.search);
+    const state = {
+      mode: params.get("mode") || config.defaultMode || "webview",
+      theme: params.get("theme") || config.defaultTheme || "light",
+      lang: params.get("lang") || config.defaultLanguage || "en",
+      tab: params.get("tab") || config.tabs[0] || "home"
+    };
+
+    const text = {
+      en: {
+        lead: "Open this file locally to preview app content and rehearse native UI states before rebuilding packages.",
+        exact: "Exact WebView mode loads the same HTML or URL as the package shell when available.",
+        native: "Native rehearsal mode is a product UI check surface. Final permission, installer, signing, and OS behavior still need real-device validation.",
+        workflow: ["Load exact source", "Rehearse native states", "Capture screenshots", "Do final device pass"]
+      },
+      zh: {
+        lead: "直接本地打开这个文件，在重新打包前预览应用内容并预演原生界面状态。",
+        exact: "真实 WebView 模式会加载包壳实际使用的 HTML 或 URL。",
+        native: "原生预演模式用于检查产品界面。权限、安装、签名和系统行为仍需要最终真机验证。",
+        workflow: ["加载真实入口", "预演原生状态", "截取预览图", "最终真机验收"]
+      }
+    };
+
+    function t(key) {
+      return (text[state.lang] || text.en)[key] || text.en[key];
+    }
+
+    function applyState() {
+      document.body.dataset.mode = state.mode;
+      document.body.dataset.theme = state.theme;
+      document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
+      document.title = `${config.appName} Preview Lab`;
+      document.querySelector(".webview").src = config.exactUrl || "about:blank";
+      document.getElementById("exactLink").href = config.exactUrl || "#";
+      renderSide();
+      renderApp();
+    }
+
+    function setState(key, value) {
+      state[key] = value;
+      applyState();
+    }
+
+    function chip(label, key, value) {
+      return `<button class="chip" data-key="${key}" data-value="${value}" aria-pressed="${state[key] === value}">${label}</button>`;
+    }
+
+    function renderSide() {
+      document.getElementById("pageTitle").textContent = `${config.appName} local preview`;
+      document.getElementById("pageLead").textContent = t("lead");
+      document.getElementById("modeNote").textContent = state.mode === "webview" ? t("exact") : t("native");
+      document.getElementById("modeControls").innerHTML = (config.modes || []).map((mode) => chip(mode, "mode", mode)).join("");
+      document.getElementById("themeControls").innerHTML = (config.themes || []).map((theme) => chip(theme, "theme", theme)).join("");
+      document.getElementById("langControls").innerHTML = (config.languages || []).map((lang) => chip(lang, "lang", lang)).join("");
+      document.getElementById("workflowCards").innerHTML = t("workflow").map((item, index) => `
+        <article class="card"><strong>${index + 1}. ${item}</strong><p>${index === 0 ? t("exact") : t("native")}</p></article>
+      `).join("");
+      document.querySelectorAll(".chip").forEach((button) => {
+        button.addEventListener("click", () => setState(button.dataset.key, button.dataset.value));
+      });
+    }
+
+    function renderApp() {
+      const cards = config.cards || fallbackConfig.cards;
+      document.getElementById("appSurface").innerHTML = `
+        <div class="top">
+          <div class="brand"><div class="mark">${config.appName.slice(0, 1)}</div><div><strong>${config.appName}</strong><small>${config.tagline}</small></div></div>
+          <button class="icon" aria-label="Menu">=</button>
+        </div>
+        <section class="hero">
+          <div class="kicker">${state.mode}</div>
+          <h1>${config.appName} preview surface</h1>
+          <p>${state.mode === "webview" ? t("exact") : t("native")}</p>
+          <div class="actions"><button class="primary">Primary flow</button><button class="ghost">Safety check</button></div>
+        </section>
+        <div class="metrics">${(config.metrics || fallbackConfig.metrics).map(([value, label]) => `<div class="metric"><strong>${value}</strong><span>${label}</span></div>`).join("")}</div>
+        <div class="section-row"><h2>${state.tab}</h2><span class="muted">${state.theme} / ${state.lang}</span></div>
+        <div class="cards">${cards.map((card) => `
+          <article class="card"><strong>${card.title}</strong><p>${card.text}</p><div class="tags">${(card.tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("")}</div></article>
+        `).join("")}</div>
+      `;
+      document.getElementById("bottomNav").innerHTML = (config.tabs || fallbackConfig.tabs).slice(0, 4).map((tab) => `
+        <button class="nav" data-tab="${tab}" aria-current="${state.tab === tab ? "page" : "false"}">${tab}</button>
+      `).join("");
+      document.querySelectorAll("[data-tab]").forEach((button) => {
+        button.addEventListener("click", () => setState("tab", button.dataset.tab));
+      });
+    }
+
+    applyState();
+  </script>
+</body>
+</html>

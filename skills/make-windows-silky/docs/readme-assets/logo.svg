@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">make_windows_silky_Patch logo</title>
+  <desc id="desc">A compact Windows workbench patch mark with smooth lanes, evidence dots, and a clean window panel.</desc>
+  <defs>
+    <linearGradient id="panel" x1="96" y1="96" x2="416" y2="416" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="0.55" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="lane" x1="128" y1="352" x2="392" y2="176" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2dd4bf"/>
+      <stop offset="0.5" stop-color="#facc15"/>
+      <stop offset="1" stop-color="#fb7185"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#020617" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+  <rect x="52" y="52" width="408" height="408" rx="96" fill="#f8fafc"/>
+  <rect x="76" y="76" width="360" height="360" rx="82" fill="#0f172a" filter="url(#softShadow)"/>
+  <rect x="112" y="118" width="288" height="220" rx="34" fill="url(#panel)"/>
+  <path d="M112 174h288" stroke="#e0f2fe" stroke-width="12" stroke-linecap="round" opacity="0.82"/>
+  <path d="M202 118v220" stroke="#e0f2fe" stroke-width="12" stroke-linecap="round" opacity="0.82"/>
+  <path d="M128 368c52-52 99-59 142-34 51 31 94 10 126-38" fill="none" stroke="url(#lane)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="134" cy="368" r="20" fill="#2dd4bf" stroke="#0f172a" stroke-width="10"/>
+  <circle cx="270" cy="334" r="20" fill="#facc15" stroke="#0f172a" stroke-width="10"/>
+  <circle cx="394" cy="296" r="20" fill="#fb7185" stroke="#0f172a" stroke-width="10"/>
+  <path d="M326 88l20 35 40 9-27 31 4 41-37-17-37 17 4-41-27-31 40-9z" fill="#ffffff" opacity="0.92"/>
+</svg>
