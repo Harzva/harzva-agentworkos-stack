@@ -65,6 +65,14 @@
   - Evidence: 2026-06-04 `agentworkos.toml` uses `source = "."` plus `path = "skills/<name>"` for vendored skills。
 - [x] 更新 README 解释 monorepo mode 和 compatible-upgrade rule。
   - Evidence: 2026-06-04 README adds Monorepo mode section。
+### P0.6 - Linux 一键升级入口
+
+- [x] 根据 Linux 远端同步经验新增 `install.sh`。
+  - Evidence: 2026-06-04 Linux run proved `aw --profile` works after updating `Harzva/AgentWorkOS`; sync applied to Codex and Claude runtime targets, then `aw scan` and `aw doctor` passed。
+- [x] README 增加 One-command Linux upgrade，明确 dry-run 和 `--apply` 分离。
+  - Evidence: 2026-06-04 README documents `bash ./install.sh --profile linux-dev --target all` and `--apply` flow。
+- [x] 保留默认安全行为：不带 `--apply` 只 dry-run。
+  - Evidence: 2026-06-04 `install.sh` defaults to dry-run and exits after preview unless `--apply` is present。
 ### P1 - 平台能力扩展
 
 - [ ] 为 `windows-desktop` 增加 public-safe Windows 专属技能或 repo 引用。
@@ -103,4 +111,3 @@
 - 当前升级只声明平台 profile，不把私有机器配置公开化。
 - `linux2` 暂不作为公开 profile，除非后续证明它是稳定机器类别而不是单机差异。
 - `safe-core` 继续作为跨平台默认基础层。
-

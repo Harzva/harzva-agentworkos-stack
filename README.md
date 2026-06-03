@@ -27,6 +27,43 @@ It is not the AgentWorkOS package manager itself. The split is intentional:
 
 The goal is simple: make a new machine able to reconstruct the same public-safe AgentOS foundation from GitHub, without copying secrets or raw local history.
 
+## One-command Linux upgrade
+
+Use this when a Linux machine already cloned the stack repo and you want to refresh AgentWorkOS plus the local Codex/Claude runtime projection.
+
+```bash
+cd ~/hzh/item_bo/harzva-agentworkos-stack
+git pull
+bash ./install.sh --profile linux-dev --target all
+```
+
+If the dry-run looks correct, apply it:
+
+```bash
+bash ./install.sh --profile linux-dev --target all --apply
+```
+
+For a server profile:
+
+```bash
+bash ./install.sh --profile linux-server --target all
+bash ./install.sh --profile linux-server --target all --apply
+```
+
+The script does four things:
+
+| Step | Command behavior |
+| --- | --- |
+| Upgrade CLI | Reinstalls `aw` from `Harzva/AgentWorkOS` main. |
+| Validate profile support | Fails if the installed `aw` does not expose `--profile`. |
+| Dry-run first | Runs `aw doctor` and `aw sync` without writes. |
+| Apply only when explicit | Writes runtime files only with `--apply`, then runs `aw scan` and final `aw doctor`. |
+
+If `aw` is not found after install:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
 ## Quick restore
 
 Install the AgentWorkOS CLI first:
@@ -59,12 +96,7 @@ aw install github:Harzva/harzva-agentworkos-stack --target all --profile linux-d
 aw install github:Harzva/harzva-agentworkos-stack --target all --profile linux-server
 ```
 
-If you cloned this repository locally, use the wrapper:
-
-```powershell
-pwsh -ExecutionPolicy Bypass -File .\install.ps1 -Target all
-pwsh -ExecutionPolicy Bypass -File .\install.ps1 -Target all -Apply
-```
+If you cloned this repository locally on Windows, use the PowerShell wrapper:`r`n`r`n```powershell`r`npwsh -ExecutionPolicy Bypass -File .\install.ps1 -Target all`r`npwsh -ExecutionPolicy Bypass -File .\install.ps1 -Target all -Apply`r`n```
 
 > `install` and `sync` are dry-run by default. Runtime writes require `--apply`.
 
@@ -212,6 +244,7 @@ harzva-agentworkos-stack/
 ├─ agentworkos.toml       # stack manifest
 ├─ agentworkos.lock.json  # resolved package and repo lockfile
 ├─ install.ps1            # local Windows restore wrapper
+├─ install.sh             # Linux/macOS dry-run/apply wrapper
 ├─ TERMS.md               # portable term map
 ├─ AGENTS.md              # public-safe operating rules
 ├─ agents/roles/          # portable role cards
@@ -242,5 +275,3 @@ Accept the update only when:
 ## License
 
 This stack is published as configuration and documentation for a public-safe Harzva AgentOS environment. Check each referenced package repository for its own license.
-
-
