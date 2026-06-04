@@ -124,3 +124,15 @@
 - `linux2` 暂不作为公开 profile，除非后续证明它是稳定机器类别而不是单机差异。
 - `safe-core` 继续作为跨平台默认基础层。
 
+
+### P3.5 - Creator / XHS optional profile and daily scan
+
+- [x] Add optional `creator` profile for public-safe `xhs-skill-suite` creation, review, campaign, ledger, terms, and rules.
+  - Evidence: stack manifest declares `creator` separately from `safe-core`.
+- [x] Add optional `xhs` profile for MCP publisher workflow guidance without credentials or login state.
+  - Evidence: `xhs` extends `creator` and only adds the publisher workflow skill package.
+- [x] Add one-click XHS sync scripts for Windows and macOS/Linux.
+  - Evidence: `scripts/sync-xhs-suite.ps1` and `scripts/sync-xhs-suite.sh` run doctor, dry-run, and optional apply.
+- [x] Add read-only daily scan helper.
+  - Evidence: `scripts/agentos-daily-scan.ps1` reports recent skills, stack health, and dry-run output without commit, push, publish, or apply.
+- [ ] Keep daily scan output reviewed by a human before changing `safe-core`.

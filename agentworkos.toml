@@ -299,3 +299,141 @@ checkout_to = "repos/harzva-agentworkos-stack"
 ref = "main"
 
 
+
+[[profiles]]
+name = "creator"
+description = "Optional creator workflow profile. Extends safe-core with public-safe Xiaohongshu creation, review, ledger, and campaign skills."
+extends = ["safe-core"]
+packages = [
+  "io.github.harzva.xhs.promo-card",
+  "io.github.harzva.xhs.content-quality-reviewer",
+  "io.github.harzva.xhs.publication-ledger",
+  "io.github.harzva.xhs.campaign-workflow",
+  "io.github.harzva.xhs.terms",
+  "io.github.harzva.xhs.rules"
+]
+
+[[profiles]]
+name = "xhs"
+description = "Optional Xiaohongshu workflow profile. Extends creator with the MCP publisher workflow guide. No credentials or login state are included."
+extends = ["creator"]
+packages = ["io.github.harzva.xhs.publisher-mcp-workflow"]
+
+[[packages]]
+id = "io.github.harzva.xhs.promo-card"
+type = "skill"
+source = "git+https://github.com/Harzva/xhs-skill-suite.git"
+path = "skills/github-xhs-promo-card"
+install_to = "skills/github-xhs-promo-card"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/github-xhs-promo-card"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/github-xhs-promo-card"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.xhs.content-quality-reviewer"
+type = "skill"
+source = "git+https://github.com/Harzva/xhs-skill-suite.git"
+path = "skills/xhs-content-quality-reviewer"
+install_to = "skills/xhs-content-quality-reviewer"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/xhs-content-quality-reviewer"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/xhs-content-quality-reviewer"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.xhs.publisher-mcp-workflow"
+type = "skill"
+source = "git+https://github.com/Harzva/xhs-skill-suite.git"
+path = "skills/xhs-publisher-mcp-workflow"
+install_to = "skills/xhs-publisher-mcp-workflow"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/xhs-publisher-mcp-workflow"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/xhs-publisher-mcp-workflow"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.xhs.publication-ledger"
+type = "skill"
+source = "git+https://github.com/Harzva/xhs-skill-suite.git"
+path = "skills/xhs-publication-ledger"
+install_to = "skills/xhs-publication-ledger"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/xhs-publication-ledger"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/xhs-publication-ledger"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.xhs.campaign-workflow"
+type = "skill"
+source = "git+https://github.com/Harzva/xhs-skill-suite.git"
+path = "skills/xhs-campaign-workflow"
+install_to = "skills/xhs-campaign-workflow"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/xhs-campaign-workflow"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/xhs-campaign-workflow"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.xhs.terms"
+type = "terms"
+source = "git+https://github.com/Harzva/xhs-skill-suite.git"
+path = "TERMS.md"
+install_to = "agents/TERMS-xhs.md"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "agents/TERMS-xhs.md"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "TERMS-xhs.md"
+adapter = "terms-to-claude-memory"
+
+[[packages]]
+id = "io.github.harzva.xhs.rules"
+type = "rule"
+source = "git+https://github.com/Harzva/xhs-skill-suite.git"
+path = "AGENTS.md"
+install_to = "AGENTS-xhs.md"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "AGENTS-xhs.md"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "CLAUDE-xhs.md"
+adapter = "rule-to-claude-memory"

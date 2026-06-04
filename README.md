@@ -325,3 +325,39 @@ Accept the update only when:
 
 This stack is published as configuration and documentation for a public-safe Harzva AgentOS environment. Check each referenced package repository for its own license.
 
+
+## Optional Creator / Xiaohongshu Profile
+
+The default `safe-core` profile stays stable and does not install Xiaohongshu publishing workflows. Creator workflows are optional profiles:
+
+| Profile | Includes | Writes credentials? |
+| --- | --- | --- |
+| `creator` | `xhs-skill-suite` creation, quality review, campaign, ledger, terms, and rules | No |
+| `xhs` | `creator` plus the MCP publisher workflow guide | No |
+
+One-click dry-run from a cloned stack repo:
+
+```powershell
+pwsh -ExecutionPolicy Bypass -File .\scripts\sync-xhs-suite.ps1 -Profile xhs -Target all
+```
+
+Apply after the preview looks correct:
+
+```powershell
+pwsh -ExecutionPolicy Bypass -File .\scripts\sync-xhs-suite.ps1 -Profile xhs -Target all -Pull -Apply
+```
+
+macOS/Linux:
+
+```bash
+bash ./scripts/sync-xhs-suite.sh --profile xhs --target all
+bash ./scripts/sync-xhs-suite.sh --profile xhs --target all --pull --apply
+```
+
+Daily local scan helper:
+
+```powershell
+pwsh -ExecutionPolicy Bypass -File .\scripts\agentos-daily-scan.ps1 -Profile xhs -Target codex
+```
+
+The scan helper is read-only: it checks recent local skills, stack health, and an `xhs` dry-run. It does not commit, push, publish notes, or run `--apply`.
