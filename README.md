@@ -13,6 +13,9 @@
 
 </div>
 
+<p align="center">
+  <img src="./docs/readme-assets/promo-harzva-agentworkos-stack.png" alt="Harzva AgentWorkOS Stack promo card" width="920" />
+</p>
 ## What this is
 
 `harzva-agentworkos-stack` is the portable environment declaration for a safe-core Harzva AgentOS setup.
