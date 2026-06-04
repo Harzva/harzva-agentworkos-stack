@@ -361,3 +361,21 @@ pwsh -ExecutionPolicy Bypass -File .\scripts\agentos-daily-scan.ps1 -Profile xhs
 ```
 
 The scan helper is read-only: it checks recent local skills, stack health, and an `xhs` dry-run. It does not commit, push, publish notes, or run `--apply`.
+
+## Restore daily AgentOS scan on a new machine
+
+The Codex App automation registry is local to each machine, so this stack includes OS-level restore scripts for the daily AgentOS scan.
+
+Windows:
+
+```powershell
+pwsh -ExecutionPolicy Bypass -File .\scripts\register-agentos-daily-scan.ps1 -At 09:30 -Profile xhs -Target codex
+```
+
+macOS/Linux:
+
+```bash
+bash ./scripts/register-agentos-daily-scan.sh --time 09:30 --profile xhs --target codex
+```
+
+The scheduled scan is read-only and writes logs under `.agentworkos/automation-logs/`. See `docs/automation-restore.md`.

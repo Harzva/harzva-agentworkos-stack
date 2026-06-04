@@ -20,7 +20,9 @@
     "agents/",
     "skills/",
     "docs/evidence/",
-    "bin/"
+    "bin/",
+    "scripts/",
+    "docs/"
   ],
   "scripts": {
     "check": "node --check bin/harzva-agentos.mjs"

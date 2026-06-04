@@ -136,3 +136,14 @@
 - [x] Add read-only daily scan helper.
   - Evidence: `scripts/agentos-daily-scan.ps1` reports recent skills, stack health, and dry-run output without commit, push, publish, or apply.
 - [ ] Keep daily scan output reviewed by a human before changing `safe-core`.
+
+### P3.6 - Automation restore on new machines
+
+- [x] Add Windows Task Scheduler restore script for the daily AgentOS scan.
+  - Evidence: `scripts/register-agentos-daily-scan.ps1` registers or unregisters the local scheduled task.
+- [x] Add macOS/Linux cron restore script for the daily AgentOS scan.
+  - Evidence: `scripts/register-agentos-daily-scan.sh` registers or unregisters the local cron entry.
+- [x] Add local log runners for scheduled scan output.
+  - Evidence: `scripts/run-agentos-daily-scan.ps1` and `scripts/run-agentos-daily-scan.sh` write logs under `.agentworkos/automation-logs/`.
+- [x] Keep scheduled scan read-only.
+  - Evidence: restore docs state no commit, push, publish, or `--apply` from the scheduled job.

@@ -146,8 +146,7 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/AgentWorkOS.git/': Failed to connect to github.com port 443 after 21113 ms: Could not connect to server"
+      "source_kind": "git-remote"
     },
     {
       "id": "io.github.harzva.agentworkos.terms",
@@ -302,8 +301,8 @@
       "resolved_path": ".",
       "source_kind": "git-local",
       "remote": "git@github-harzva:Harzva/harzva-agentworkos-stack.git",
-      "commit": "f178226727ea3b4ecf855e0ca7009220b7df4bf3",
-      "content_hash": "af8acac71ceab9e0c0c1ccbd406cbe85df3a659ea89b7b233d0e40b1c6dc62c1"
+      "commit": "88d0cfe24e180a72762ed083b1ecfd9970fe5436",
+      "content_hash": "7d6b2a0a9d90807d10a816e67d1e4a930ae68a8395c379235ca68919ef05a9eb"
     },
     {
       "id": "io.github.just-agent.app-preview-lab",
@@ -326,8 +325,8 @@
       "resolved_path": ".",
       "source_kind": "git-local",
       "remote": "git@github-harzva:Harzva/harzva-agentworkos-stack.git",
-      "commit": "f178226727ea3b4ecf855e0ca7009220b7df4bf3",
-      "content_hash": "af8acac71ceab9e0c0c1ccbd406cbe85df3a659ea89b7b233d0e40b1c6dc62c1"
+      "commit": "88d0cfe24e180a72762ed083b1ecfd9970fe5436",
+      "content_hash": "7d6b2a0a9d90807d10a816e67d1e4a930ae68a8395c379235ca68919ef05a9eb"
     },
     {
       "id": "io.github.just-agent.appui-design",
@@ -350,8 +349,8 @@
       "resolved_path": ".",
       "source_kind": "git-local",
       "remote": "git@github-harzva:Harzva/harzva-agentworkos-stack.git",
-      "commit": "f178226727ea3b4ecf855e0ca7009220b7df4bf3",
-      "content_hash": "af8acac71ceab9e0c0c1ccbd406cbe85df3a659ea89b7b233d0e40b1c6dc62c1"
+      "commit": "88d0cfe24e180a72762ed083b1ecfd9970fe5436",
+      "content_hash": "7d6b2a0a9d90807d10a816e67d1e4a930ae68a8395c379235ca68919ef05a9eb"
     },
     {
       "id": "io.github.harzva.design-md-flow",
@@ -374,8 +373,8 @@
       "resolved_path": ".",
       "source_kind": "git-local",
       "remote": "git@github-harzva:Harzva/harzva-agentworkos-stack.git",
-      "commit": "f178226727ea3b4ecf855e0ca7009220b7df4bf3",
-      "content_hash": "af8acac71ceab9e0c0c1ccbd406cbe85df3a659ea89b7b233d0e40b1c6dc62c1"
+      "commit": "88d0cfe24e180a72762ed083b1ecfd9970fe5436",
+      "content_hash": "7d6b2a0a9d90807d10a816e67d1e4a930ae68a8395c379235ca68919ef05a9eb"
     },
     {
       "id": "io.github.harzva.readme-showcase-screenshot",
@@ -398,8 +397,8 @@
       "resolved_path": ".",
       "source_kind": "git-local",
       "remote": "git@github-harzva:Harzva/harzva-agentworkos-stack.git",
-      "commit": "f178226727ea3b4ecf855e0ca7009220b7df4bf3",
-      "content_hash": "af8acac71ceab9e0c0c1ccbd406cbe85df3a659ea89b7b233d0e40b1c6dc62c1"
+      "commit": "88d0cfe24e180a72762ed083b1ecfd9970fe5436",
+      "content_hash": "7d6b2a0a9d90807d10a816e67d1e4a930ae68a8395c379235ca68919ef05a9eb"
     },
     {
       "id": "io.github.harzva.android-release-emulator-qa",
@@ -422,8 +421,8 @@
       "resolved_path": ".",
       "source_kind": "git-local",
       "remote": "git@github-harzva:Harzva/harzva-agentworkos-stack.git",
-      "commit": "f178226727ea3b4ecf855e0ca7009220b7df4bf3",
-      "content_hash": "af8acac71ceab9e0c0c1ccbd406cbe85df3a659ea89b7b233d0e40b1c6dc62c1"
+      "commit": "88d0cfe24e180a72762ed083b1ecfd9970fe5436",
+      "content_hash": "7d6b2a0a9d90807d10a816e67d1e4a930ae68a8395c379235ca68919ef05a9eb"
     },
     {
       "id": "io.github.harzva.make-windows-silky",
@@ -446,8 +445,8 @@
       "resolved_path": ".",
       "source_kind": "git-local",
       "remote": "git@github-harzva:Harzva/harzva-agentworkos-stack.git",
-      "commit": "f178226727ea3b4ecf855e0ca7009220b7df4bf3",
-      "content_hash": "af8acac71ceab9e0c0c1ccbd406cbe85df3a659ea89b7b233d0e40b1c6dc62c1"
+      "commit": "88d0cfe24e180a72762ed083b1ecfd9970fe5436",
+      "content_hash": "7d6b2a0a9d90807d10a816e67d1e4a930ae68a8395c379235ca68919ef05a9eb"
     },
     {
       "id": "io.github.harzva.xhs.promo-card",
@@ -467,8 +466,7 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/xhs-skill-suite.git/': Failed to connect to github.com port 443 after 21100 ms: Could not connect to server"
+      "source_kind": "git-remote"
     },
     {
       "id": "io.github.harzva.xhs.content-quality-reviewer",
@@ -488,8 +486,7 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/xhs-skill-suite.git/': Failed to connect to github.com port 443 after 21101 ms: Could not connect to server"
+      "source_kind": "git-remote"
     },
     {
       "id": "io.github.harzva.xhs.publisher-mcp-workflow",
@@ -509,8 +506,7 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/xhs-skill-suite.git/': Failed to connect to github.com port 443 after 21102 ms: Could not connect to server"
+      "source_kind": "git-remote"
     },
     {
       "id": "io.github.harzva.xhs.publication-ledger",
@@ -530,8 +526,7 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/xhs-skill-suite.git/': Failed to connect to github.com port 443 after 21037 ms: Could not connect to server"
+      "source_kind": "git-remote"
     },
     {
       "id": "io.github.harzva.xhs.campaign-workflow",
@@ -551,8 +546,7 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/xhs-skill-suite.git/': Failed to connect to github.com port 443 after 21056 ms: Could not connect to server"
+      "source_kind": "git-remote"
     },
     {
       "id": "io.github.harzva.xhs.terms",
@@ -572,8 +566,7 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/xhs-skill-suite.git/': Failed to connect to github.com port 443 after 21107 ms: Could not connect to server"
+      "source_kind": "git-remote"
     },
     {
       "id": "io.github.harzva.xhs.rules",
@@ -593,8 +586,7 @@
         }
       ],
       "ref": "main",
-      "source_kind": "git-remote",
-      "warning": "fatal: unable to access 'https://github.com/Harzva/xhs-skill-suite.git/': Failed to connect to github.com port 443 after 21088 ms: Could not connect to server"
+      "source_kind": "git-remote"
     }
   ],
   "repos": [
@@ -602,15 +594,13 @@
       "id": "io.github.harzva.agentworkos",
       "source": "https://github.com/Harzva/AgentWorkOS.git",
       "checkout_to": "repos/AgentWorkOS",
-      "ref": "main",
-      "commit": "710a2ea35aafaadafc52b91309bb0b283e61e62c"
+      "ref": "main"
     },
     {
       "id": "io.github.harzva.agentworkos-stack",
       "source": "https://github.com/Harzva/harzva-agentworkos-stack.git",
       "checkout_to": "repos/harzva-agentworkos-stack",
-      "ref": "main",
-      "commit": "f178226727ea3b4ecf855e0ca7009220b7df4bf3"
+      "ref": "main"
     }
   ]
 }
