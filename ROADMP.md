@@ -87,14 +87,18 @@
 - [ ] 为 `mac-dev` 增加 public-safe macOS/iOS 开发能力。
 - [ ] 为 `linux-dev` 增加 public-safe Linux CLI/dev 能力。
 - [ ] 为 `linux-server` 增加 public-safe server/automation 能力。
-- [ ] 明确哪些能力只能写入 `agentworkos.local.toml`。`r`n- [ ] 后续新 skill 默认先进入 stack monorepo，成熟到可独立复用时再拆出单仓库。
+- [ ] 明确哪些能力只能写入 `agentworkos.local.toml`。
+- [ ] 后续新 skill 默认先进入 stack monorepo，成熟到可独立复用时再拆出单仓库。
 
 ### P2 - 新机器恢复演练
 
 - [ ] 在一台非 Windows 机器上执行 `aw install github:Harzva/harzva-agentworkos-stack --profile mac-dev --target all` dry-run。
-- [x] 在 Linux 开发机执行 `--profile linux-dev` dry-run。`r`n  - Evidence: 2026-06-04 `docs/evidence/linux-sync-2026-06-04.md` records successful Linux dry-run/apply/scan/doctor summary。
+- [x] 在 Linux 开发机执行 `--profile linux-dev` dry-run。
+  - Evidence: 2026-06-04 `docs/evidence/linux-sync-2026-06-04.md` records successful Linux dry-run/apply/scan/doctor summary。
 - [ ] 在 Linux server 执行 `--profile linux-server` dry-run。
-- [ ] 记录每个平台的缺失依赖、路径差异和 runtime projection 差异。`r`n- [x] 记录 Linux `linux-dev` 成功同步证据。`r`n  - Evidence: 2026-06-04 `docs/evidence/linux-sync-2026-06-04.md`。
+- [ ] 记录每个平台的缺失依赖、路径差异和 runtime projection 差异。
+- [x] 记录 Linux `linux-dev` 成功同步证据。
+  - Evidence: 2026-06-04 `docs/evidence/linux-sync-2026-06-04.md`。
 
 ### P3 - 三端同步治理
 
@@ -119,3 +123,4 @@
 - 当前升级只声明平台 profile，不把私有机器配置公开化。
 - `linux2` 暂不作为公开 profile，除非后续证明它是稳定机器类别而不是单机差异。
 - `safe-core` 继续作为跨平台默认基础层。
+

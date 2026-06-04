@@ -131,7 +131,12 @@ aw install github:Harzva/harzva-agentworkos-stack --target all --profile linux-d
 aw install github:Harzva/harzva-agentworkos-stack --target all --profile linux-server
 ```
 
-If you cloned this repository locally on Windows, use the PowerShell wrapper:`r`n`r`n```powershell`r`npwsh -ExecutionPolicy Bypass -File .\install.ps1 -Target all`r`npwsh -ExecutionPolicy Bypass -File .\install.ps1 -Target all -Apply`r`n```
+If you cloned this repository locally on Windows, use the PowerShell wrapper:
+
+```powershell
+pwsh -ExecutionPolicy Bypass -File .\install.ps1 -Target all
+pwsh -ExecutionPolicy Bypass -File .\install.ps1 -Target all -Apply
+```
 
 > `install` and `sync` are dry-run by default. Runtime writes require `--apply`.
 
@@ -239,12 +244,19 @@ separate security boundary -> separate stack repository
 | `base` | Terms, rules, inventory skill, and core repo references. |
 | `agents` | `base` plus portable task role cards. |
 | `skills` | `agents` plus public reusable skills. |
-| `safe-core` | Default public-safe shared foundation. |`r`n| `windows-desktop` | Current Windows workstation profile; extends `safe-core`. |`r`n| `mac-dev` | macOS development profile; extends `safe-core`. |`r`n| `linux-dev` | Linux workstation profile; extends `safe-core`. |`r`n| `linux-server` | Linux server profile; extends `safe-core`. |`r`n| `full` | Every package and repo reference declared by this stack. |
+| `safe-core` | Default public-safe shared foundation. |
+| `windows-desktop` | Current Windows workstation profile; extends `safe-core`. |
+| `mac-dev` | macOS development profile; extends `safe-core`. |
+| `linux-dev` | Linux workstation profile; extends `safe-core`. |
+| `linux-server` | Linux server profile; extends `safe-core`. |
+| `full` | Every package and repo reference declared by this stack. |
 
 Examples:
 
 ```powershell
-aw doctor --manifest agentworkos.toml --profile windows-desktop`r`naw sync --manifest agentworkos.toml --target codex --profile agents`r`naw sync --manifest agentworkos.toml --target all --profile windows-desktop --apply
+aw doctor --manifest agentworkos.toml --profile windows-desktop
+aw sync --manifest agentworkos.toml --target codex --profile agents
+aw sync --manifest agentworkos.toml --target all --profile windows-desktop --apply
 ```
 
 ## Roadmp
@@ -312,3 +324,4 @@ Accept the update only when:
 ## License
 
 This stack is published as configuration and documentation for a public-safe Harzva AgentOS environment. Check each referenced package repository for its own license.
+
