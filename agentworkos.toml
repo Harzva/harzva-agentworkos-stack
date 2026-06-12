@@ -41,6 +41,7 @@ packages = [
   "io.github.harzva.design-md-flow",
   "io.github.harzva.readme-showcase-screenshot",
   "io.github.harzva.android-release-emulator-qa",
+  "io.github.harzva.codex-spark-playbook.cxspark",
   "io.github.harzva.make-windows-silky"
 ]
 
@@ -284,6 +285,23 @@ install_to = "skills/make-windows-silky"
 [[packages.targets]]
 runtime = "claude-code"
 install_to = "skills/make-windows-silky"
+adapter = "skill-to-claude-skill"
+
+[[packages]]
+id = "io.github.harzva.codex-spark-playbook.cxspark"
+type = "skill"
+source = "git+https://github.com/Harzva/codex-spark-playbook.git"
+path = "skills/cxspark"
+install_to = "skills/cxspark"
+ref = "main"
+
+[[packages.targets]]
+runtime = "codex"
+install_to = "skills/cxspark"
+
+[[packages.targets]]
+runtime = "claude-code"
+install_to = "skills/cxspark"
 adapter = "skill-to-claude-skill"
 
 [[repos]]

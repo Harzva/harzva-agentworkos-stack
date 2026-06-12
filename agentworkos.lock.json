@@ -53,6 +53,7 @@
         "io.github.harzva.design-md-flow",
         "io.github.harzva.readme-showcase-screenshot",
         "io.github.harzva.android-release-emulator-qa",
+        "io.github.harzva.codex-spark-playbook.cxspark",
         "io.github.harzva.make-windows-silky"
       ]
     },
@@ -447,6 +448,27 @@
       "remote": "git@github-harzva:Harzva/harzva-agentworkos-stack.git",
       "commit": "88d0cfe24e180a72762ed083b1ecfd9970fe5436",
       "content_hash": "7d6b2a0a9d90807d10a816e67d1e4a930ae68a8395c379235ca68919ef05a9eb"
+    },
+    {
+      "id": "io.github.harzva.codex-spark-playbook.cxspark",
+      "type": "skill",
+      "source": "git+https://github.com/Harzva/codex-spark-playbook.git",
+      "path": "skills/cxspark",
+      "install_to": "skills/cxspark",
+      "targets": [
+        {
+          "runtime": "codex",
+          "install_to": "skills/cxspark"
+        },
+        {
+          "runtime": "claude-code",
+          "install_to": "skills/cxspark",
+          "adapter": "skill-to-claude-skill"
+        }
+      ],
+      "ref": "main",
+      "source_kind": "git-remote",
+      "commit": "0be321aaa8afcb51a25b5803cd2c134c43cc6b4d"
     },
     {
       "id": "io.github.harzva.xhs.promo-card",
